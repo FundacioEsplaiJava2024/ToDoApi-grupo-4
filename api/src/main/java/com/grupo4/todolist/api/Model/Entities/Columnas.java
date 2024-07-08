@@ -5,9 +5,9 @@ import java.util.List;
 public class Columnas {
     private String nombre;
     private int id;
-    private List<Task> listaTareasColumnas;
+    public List<Tasks> listaTareasColumnas;
 
-    public Columnas(int id, String nombre, List<Task> listaTareasColumnas) {
+    public Columnas(int id, String nombre, List<Tasks> listaTareasColumnas) {
         this.id = id;
         this.nombre = nombre;
         this.listaTareasColumnas = listaTareasColumnas;
@@ -21,11 +21,11 @@ public class Columnas {
         return id;
     }
 
-    public List<Task> getListaTareasColumnas() {
+    public List<Tasks> getListaTareasColumnas() {
         return listaTareasColumnas;
     }
 
-    public void setListaTareasColumnas(List<Task> listaTareasColumnas) {
+    public void setListaTareasColumnas(List<Tasks> listaTareasColumnas) {
         this.listaTareasColumnas = listaTareasColumnas;
     }
 
