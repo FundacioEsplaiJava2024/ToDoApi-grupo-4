@@ -21,8 +21,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 public class Controller {
+	private static TaskModel model = new TaskModel(); //sus
     private static final String template = "Hello, %s!";
 	private final AtomicLong counter = new AtomicLong();
+
+	
+
+	public Controller() {
+		this.model = model; //sus
+	}
 
 	@GetMapping("/greeting")
 	public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
@@ -30,9 +37,9 @@ public class Controller {
 	}
 
 	@GetMapping("/TodolistG4/tasks")//TODO: añadir paginación
-	public List<Task> listTasks() {
+	public static List<Task> listTasks() {
 		
-		return TaskRepo.askTask();
+		return model.listTasks();
 	}
 
 	@PostMapping("/TodolistG4/tasks/add")

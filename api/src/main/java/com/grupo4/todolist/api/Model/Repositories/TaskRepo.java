@@ -7,8 +7,14 @@ import com.grupo4.todolist.api.Model.DAOs.TaskDAO;
 import com.grupo4.todolist.api.Model.Entities.Task;
 
 public class TaskRepo {
-    public static List<Task> askTask(){
-        return TaskDAO.getTasks();
+    private final TaskDAO taskDAO;
+
+    public TaskRepo() {
+        this.taskDAO = new TaskDAO();
+    }
+
+    public List<Task> askTask(){
+        return taskDAO.getTasks();
     }
 
 	public static int addTask(Task task) {
