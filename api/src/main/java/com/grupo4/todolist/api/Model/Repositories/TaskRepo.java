@@ -17,8 +17,20 @@ public class TaskRepo {
         return taskDAO.getTasks();
     }
 
-	public static int addTask(Task task) {
-		int cont = TaskDAO.insert(task);
+	public  int addTask(Task task) {
+		int cont = taskDAO.insert(task);
+        return cont;
+	}
+    public  int edit(Task task) {
+		int cont = taskDAO.edit(task);
+        return cont;
+	}
+    public  int delete(Task task) {
+		int cont = taskDAO.delete(task);
+        return cont;
+	}
+    public  int move(Task task) {
+		int cont = taskDAO.move(task);
         return cont;
 	}
 }

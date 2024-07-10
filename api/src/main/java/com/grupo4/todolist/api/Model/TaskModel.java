@@ -18,9 +18,24 @@ public class TaskModel {
     public List<Task> listTasks(){
         return taskRepo.askTask();
     }
-    public static int addTask(Task task){
+    public  int addTask(Task task){
         int cont = -1; 
-        cont = TaskRepo.addTask(task);
+        cont = taskRepo.addTask(task);
+        return cont;
+    }
+    public  int edit(Task task){
+        int cont = -1; 
+        cont = taskRepo.edit(task);
+        return cont;
+    }
+    public  int delete(Task task){
+        int cont = -1; 
+        cont = taskRepo.delete(task);
+        return cont;
+    }
+    public  int move(Task task){
+        int cont = -1; 
+        cont = taskRepo.move(task);
         return cont;
     }
 }
