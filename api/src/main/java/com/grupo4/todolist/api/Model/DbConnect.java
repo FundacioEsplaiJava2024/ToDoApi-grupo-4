@@ -11,9 +11,9 @@ public final class DbConnect {
     public static final String DRIVER = "com.mysql.cj.jdbc.Driver";
     public static final String PROTOCOL = "jdbc:mysql:";
     public static final String HOST = "127.0.0.1";
-    public static final String BD_NAME = "test";
-    public static final String USER = "";
-    public static final String PASSWORD = "";
+    public static final String BD_NAME = "todogroup4";
+    public static final String USER = "root";
+    public static final String PASSWORD = "uN4m@htOsu1P3daliof0b14Chun64!";
     public static String BD_URL;
     
     public static void loadDriver() {

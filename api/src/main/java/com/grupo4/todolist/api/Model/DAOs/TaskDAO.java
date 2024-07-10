@@ -25,9 +25,9 @@ public class TaskDAO {
     private Task fromResultSet(ResultSet rs){
         Task task;
         try {
-            String id = rs.getString("taskId");
-            String name = rs.getString("name");
-            String colId = rs.getString("colId");
+            String id = rs.getString("task_id");
+            String name = rs.getString("task_name");
+            String colId = rs.getString("column_id");
             task = new Task(id, name, colId);
 
             return task;
@@ -41,7 +41,7 @@ public class TaskDAO {
     public List<Task> getTasks(){
         List<Task> result = new ArrayList<>();
         try (Connection conn = dbConnect.getConnection()) {
-            String query = "select * from tasks";
+            String query = "select * from task";
             Statement stm = conn.createStatement();
             ResultSet rs = stm.executeQuery(query);
             //Fetch data
