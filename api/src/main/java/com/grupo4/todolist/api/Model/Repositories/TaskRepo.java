@@ -21,16 +21,16 @@ public class TaskRepo {
 		int cont = taskDAO.insert(task);
         return cont;
 	}
-    public  int edit(Task task) {
-		int cont = taskDAO.edit(task);
+    public  int edit(String id, Task task) {
+		int cont = taskDAO.edit(id, task);
         return cont;
 	}
-    public  int delete(Task task) {
-		int cont = taskDAO.delete(task);
+    public  int delete(String id) {
+		int cont = taskDAO.delete(id);
         return cont;
 	}
-    public  int move(Task task) {
-		int cont = taskDAO.move(task);
+    public  int move(String id, Task task) {
+		int cont = taskDAO.move(id, task);
         return cont;
 	}
 }

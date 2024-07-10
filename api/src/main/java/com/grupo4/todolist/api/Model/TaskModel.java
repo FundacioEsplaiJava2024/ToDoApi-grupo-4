@@ -23,19 +23,19 @@ public class TaskModel {
         cont = taskRepo.addTask(task);
         return cont;
     }
-    public  int edit(Task task){
+    public  int editTask(String id,Task task){
         int cont = -1; 
-        cont = taskRepo.edit(task);
+        cont = taskRepo.edit(id, task);
         return cont;
     }
-    public  int delete(Task task){
+    public  int deleteTask(String id){
         int cont = -1; 
-        cont = taskRepo.delete(task);
+        cont = taskRepo.delete(id);
         return cont;
     }
-    public  int move(Task task){
+    public  int moveTask(String id, Task task){
         int cont = -1; 
-        cont = taskRepo.move(task);
+        cont = taskRepo.move(id, task);
         return cont;
     }
 }

@@ -72,25 +72,25 @@ public class TaskDAO {
         return result;
 	}
 
-    public int edit(Task task){
+    public int edit(String id, Task task){
         int result = -1;
         if(task!=null){
             result = 1;
-        }else{{
+        }else{
             result = 0;
-        }}
+        }
         return result;
     }
-    public int delete(Task task){
+    public int delete(String id){
         int result = -1;
-                if(task!=null){
-                    result = 1;
-                } else{{
-                    result = 0;
-                }}
-                return result;
+        if(id!=null){
+            result = 1;
+        }else{
+            result = 0;
+        }
+        return result;
     }
-    public int move(Task task){
+    public int move(String id, Task task){
         int result = -1;
         if(task!=null){
             result = 1;

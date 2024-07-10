@@ -94,7 +94,7 @@ public class Controller {
 	}
 
 	@PostMapping("/TodolistG4/tasks/{id}/move")
-	public String moveTask(@PathVariable ("id")String id ,@RequestBody String entity) {
+	public String moveTask(@PathVariable ("id")String id ,@RequestBody Task entity) {
 		String response;
 		
 		int cont = model.moveTask(id ,entity);
