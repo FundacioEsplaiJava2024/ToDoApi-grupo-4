@@ -1,10 +1,10 @@
-package com.grupo4.todolist.api.Model.Repositories;
+package com.grupo4.todolist.api.Domain.Repositories;
 
 
 import java.util.List;
 
-import com.grupo4.todolist.api.Model.DAOs.TaskDAO;
-import com.grupo4.todolist.api.Model.Entities.Task;
+import com.grupo4.todolist.api.Domain.DAOs.TaskDAO;
+import com.grupo4.todolist.api.Domain.Entities.Task;
 
 public class TaskRepo {
     private final TaskDAO taskDAO;

@@ -1,4 +1,4 @@
-package com.grupo4.todolist.api.Model.Entities;
+package com.grupo4.todolist.api.Domain.Entities;
 
 public class Task {
     private String taskId;

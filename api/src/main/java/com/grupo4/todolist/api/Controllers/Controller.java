@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.google.gson.Gson;
-import com.grupo4.todolist.api.Model.Greeting;
-import com.grupo4.todolist.api.Model.TaskModel;
-import com.grupo4.todolist.api.Model.Entities.Task;
-import com.grupo4.todolist.api.Model.Repositories.TaskRepo;
+import com.grupo4.todolist.api.Domain.Greeting;
+import com.grupo4.todolist.api.Domain.TaskServices;
+import com.grupo4.todolist.api.Domain.Entities.Task;
+import com.grupo4.todolist.api.Domain.Repositories.TaskRepo;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 public class Controller {
-	private static TaskModel model = new TaskModel(); //sus
+	private static TaskServices model = new TaskServices(); //sus
     private static final String template = "Hello, %s!";
 	private final AtomicLong counter = new AtomicLong();
 
@@ -46,7 +46,7 @@ public class Controller {
 	public String addTask(@RequestBody Task entity) {
 		String response;
 
-		int cont = TaskModel.addTask(entity);
+		int cont = TaskServices.addTask(entity);
 		
 		if (cont == 1) {
 			response = "Tarea agregada correctamente";

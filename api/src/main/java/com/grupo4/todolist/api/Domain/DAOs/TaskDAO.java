@@ -1,11 +1,11 @@
-package com.grupo4.todolist.api.Model.DAOs;
+package com.grupo4.todolist.api.Domain.DAOs;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.grupo4.todolist.api.Model.DbConnect;
-import com.grupo4.todolist.api.Model.Entities.Task;
+import com.grupo4.todolist.api.Domain.DbConnect;
+import com.grupo4.todolist.api.Domain.Entities.Task;
 
 public class TaskDAO {
     private final DbConnect dbConnect;

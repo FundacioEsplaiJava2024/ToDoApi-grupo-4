@@ -1,4 +1,4 @@
-package com.grupo4.todolist.api.Model;
+package com.grupo4.todolist.api.Domain;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
