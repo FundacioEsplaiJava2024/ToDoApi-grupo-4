@@ -1,13 +1,28 @@
 package com.grupo4.todolist.api.Model.Entities;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import java.util.List;
 
+@Entity
 public class Columnas {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+    
     private String nombre;
-    private int id;
-    public List<Tasks> listaTareasColumnas;
 
-    public Columnas(int id, String nombre, List<Tasks> listaTareasColumnas) {
+    @OneToMany
+    private List<Tasks> listaTareasColumnas;
+
+    // Constructor por defecto
+    public Columnas() {}
+
+    public Columnas(long id, String nombre, List<Tasks> listaTareasColumnas) {
         this.id = id;
         this.nombre = nombre;
         this.listaTareasColumnas = listaTareasColumnas;
@@ -17,7 +32,7 @@ public class Columnas {
         return nombre;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
@@ -33,8 +48,7 @@ public class Columnas {
         this.nombre = nombre;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 }
-

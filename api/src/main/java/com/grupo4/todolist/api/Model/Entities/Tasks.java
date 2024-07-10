@@ -1,30 +1,40 @@
 package com.grupo4.todolist.api.Model.Entities;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class Tasks {
-    private int taskid;
-    private String nombre;
-    
 
-    public Tasks(int taskid, String nombre) {
-        this.taskid = taskid;
-        this.nombre = nombre;
-        
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
+    private String name;
+
+    // Constructor por defecto
+    public Tasks() {}
+
+    public Tasks(long id, String name) {
+        this.id = id;
+        this.name = name;
     }
 
-    public int gettaskId() {
-        return taskid;
+    public long getId() {
+        return id;
     }
 
-    public void setId(int taskid) {
-        this.taskid = taskid;
+    public String getName() {
+        return name;
     }
 
-    public String getNombre() {
-        return nombre;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setName(String name) {
+        this.name = name;
     }
-
 }
