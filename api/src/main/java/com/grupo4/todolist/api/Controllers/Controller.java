@@ -42,23 +42,23 @@ public class Controller {
 		return model.listTasks();
 	}
 
-	@PostMapping("/TodolistG4/tasks/add")
-	public String addTask(@RequestBody Task entity) {
-		String response;
+	// @PostMapping("/TodolistG4/tasks/add")
+	// public String addTask(@RequestBody Task entity) {
+	// 	String response;
 
-		int cont = TaskServices.addTask(entity);
+	// 	int cont = TaskServices.addTask(entity);
 		
-		if (cont == 1) {
-			response = "Tarea agregada correctamente";
-		}else if(cont == 0){
-			response = "Error al agregar tarea";
-		}else{
-			response = "Error al enviar tarea";
-		}
+	// 	if (cont == 1) {
+	// 		response = "Tarea agregada correctamente";
+	// 	}else if(cont == 0){
+	// 		response = "Error al agregar tarea";
+	// 	}else{
+	// 		response = "Error al enviar tarea";
+	// 	}
 
-		return response;
+	// 	return response;
 
-	}
+	// }
 	@PostMapping("/TodolistG4/tasks/{id}/edit")
 	public String editTask(@RequestBody String entity) {
 		//TODO: process POST request
