@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,4 +37,15 @@ public class ColumnController {
             }
             return ResponseEntity.ok(oCol);//metodo de todo ha ido bien y devuelve la columna
         }
-}
+        //Cambiar nombre de la columna
+        @PutMapping("edit/{id}")
+        public ResponseEntity<Columnas> update(@RequestBody Columnas nombreCol,@PathVariable Long id){
+            Optional<Columnas> columna = serviceColumn.findById(id);
+            if(!columna.isPresent()){//si no se encuentra la columna devuelve el codigo 404
+                return ResponseEntity.notFound().build();
+            }
+            columna.get().setNombre(nombreCol.getNombre());
+            return ResponseEntity.status(HttpStatus.CREATED).body(serviceColumn.guardarColumnas(nombreCol));
+        } 
+        }
+
