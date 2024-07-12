@@ -59,24 +59,24 @@ public class Controller {
 	// 	return response;
 
 	// }
-	@PostMapping("/TodolistG4/tasks/{id}/edit")
-	public String editTask(@RequestBody String entity) {
-		//TODO: process POST request
+	// @PostMapping("/TodolistG4/tasks/{id}/edit")
+	// public String editTask(@RequestBody String entity) {
+	// 	//TODO: process POST request
 		
-		return entity;
-	}
+	// 	return entity;
+	// }
 	
-	@DeleteMapping("/TodolistG4/tasks/{id}/delete")
-	public String deleteTask(@RequestBody String entity){
+	// @DeleteMapping("/TodolistG4/tasks/{id}/delete")
+	// public String deleteTask(@RequestBody String entity){
 
-		return entity;
-	}
+	// 	return entity;
+	// }
 
-	@PostMapping("/TodolistG4/tasks/{id}/move")
-	public String moveTask(@RequestBody String entity) {
-		//TODO: process POST request
+	// @PostMapping("/TodolistG4/tasks/{id}/move")
+	// public String moveTask(@RequestBody String entity) {
+	// 	//TODO: process POST request
 		
-		return entity;
-	}
+	// 	return entity;
+	// }
 	
 }
