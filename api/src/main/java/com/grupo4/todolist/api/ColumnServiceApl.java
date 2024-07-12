@@ -1,18 +1,16 @@
-package com.grupo4.todolist.api.Model.Entities;
+package com.grupo4.todolist.api;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.grupo4.todolist.api.Model.ServiceColumn;
+import com.grupo4.todolist.api.Model.ColumnService;
+import com.grupo4.todolist.api.Model.Entities.Columnas;
 import com.grupo4.todolist.api.Model.Repositories.RepositoryColumn;
 @Service//Obligatorio para indicar que es un servicio
-public class ServiceColumnApl implements ServiceColumn {
+public class ColumnServiceApl implements ColumnService {
    @Autowired
    public RepositoryColumn repositoryColumn;
    @Transactional(readOnly = true)//esto significa que solo puede leer no puede añadir cosas a la base de datos
@@ -27,7 +25,7 @@ public class ServiceColumnApl implements ServiceColumn {
    }
    @Transactional// para indicar que si hará cambios en nuestra base de datos
    @Override
-   public Columnas guardarColumnas(Columnas columna){
+   public Columnas save(Columnas columna){
       return repositoryColumn.save(columna);
    }
    @Transactional

@@ -15,18 +15,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.grupo4.todolist.api.Model.Entities.Columnas;
-import com.grupo4.todolist.api.Model.ServiceColumn;
+import com.grupo4.todolist.api.Model.ColumnService;
 
 @RestController
 @RequestMapping("/api/Columnas")
 public class ColumnController {
 
     @Autowired
-    private ServiceColumn serviceColumn;
+    private ColumnService serviceColumn;
     //Crear una nueva columna
     @PostMapping
     public ResponseEntity<Columnas> create(@RequestBody Columnas columna) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(serviceColumn.guardarColumnas(columna));
+        return ResponseEntity.status(HttpStatus.CREATED).body(serviceColumn.save(columna));
     }
     //Leer una columna
     @GetMapping("{id}")
@@ -46,7 +46,7 @@ public class ColumnController {
                 return ResponseEntity.notFound().build();
             }
             columna.get().setNombre(nombreCol.getNombre());
-            return ResponseEntity.status(HttpStatus.CREATED).body(serviceColumn.guardarColumnas(nombreCol));
+            return ResponseEntity.status(HttpStatus.CREATED).body(serviceColumn.save(nombreCol));
         }
         
         //Eliminar columna
