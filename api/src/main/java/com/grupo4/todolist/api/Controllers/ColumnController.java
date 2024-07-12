@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.grupo4.todolist.api.Model.Entities.Columnas;
-import com.grupo4.todolist.api.Model.ColumnService;
+import com.grupo4.todolist.api.Model.Services.ColumnService;
 
 @RestController
 @RequestMapping("/api/Columnas")
