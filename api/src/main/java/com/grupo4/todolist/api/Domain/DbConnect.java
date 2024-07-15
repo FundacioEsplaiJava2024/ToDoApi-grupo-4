@@ -1,9 +1,12 @@
 package com.grupo4.todolist.api.Domain;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Scanner;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -13,16 +16,27 @@ public final class DbConnect {
     public static final String PROTOCOL = "jdbc:mysql:";
     public static final String HOST = "127.0.0.1";
     public static final String BD_NAME = "todogroup4";
-    public static final String USER = "root";
-    public static String PASSWORD = "";
+    public static String USER;
+    public static String PASSWORD;
     public static String BD_URL;
     
-    public static String password() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Introduce la contraseña: ");
-        String PASSWORD = scanner.nextLine();
-        scanner.close();
-        return PASSWORD;
+    public static String loadCredentials(){
+        Properties properties = new Properties();
+        FileInputStream input;
+        try {
+            input = new FileInputStream("api/src/main/resources/application.properties");
+            System.out.println(input);
+            properties.load(input);
+            USER = properties.getProperty("user");
+            PASSWORD = properties.getProperty("password");
+            input.close();
+        } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+        return BD_URL;
     }
 
     public static void loadDriver() {
@@ -39,10 +53,11 @@ public final class DbConnect {
     /**
      * gets and returns a connection to database
      * @return connection
+     * @throws IOException 
      * @throws PersistException in case of connetion error
      */
     public Connection getConnection(){
-        PASSWORD = password();
+        loadCredentials();
         BD_URL = String.format("%s//%s/%s", PROTOCOL, HOST, BD_NAME);
         Connection conn=null;
         try {
