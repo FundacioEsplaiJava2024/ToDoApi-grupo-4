@@ -20,7 +20,7 @@ public final class DbConnect {
     public static String PASSWORD;
     public static String BD_URL;
     
-    public static String loadCredentials(){
+    public static void loadCredentials(){
         Properties properties = new Properties();
         FileInputStream input;
         try {
@@ -36,7 +36,6 @@ public final class DbConnect {
         } catch (IOException e){
             e.printStackTrace();
         }
-        return BD_URL;
     }
 
     public static void loadDriver() {
