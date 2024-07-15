@@ -1,11 +1,25 @@
-package com.grupo4.todolist.api.Domain.Entities;
+package com.grupo4.todolist.api.Model.Entities;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class Task {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String taskId;
+
     private String taskName;
+
     private String sourceColumn;
-    
-    public Task(String taskId, String taskName, String sourceColumn) {
+
+    // Constructor por defecto
+    public Task() {}
+
+    public Task(String taskId, String taskName,String sourceColumn) {
         this.taskId = taskId;
         this.taskName = taskName;
         this.sourceColumn = sourceColumn;
@@ -14,22 +28,26 @@ public class Task {
     public String getTaskId() {
         return taskId;
     }
-    public void setTaskId(String taskId) {
-        this.taskId = taskId;
-    }
+
     public String getTaskName() {
         return taskName;
     }
+
+    public void setTaskId(String taskId) {
+        this.taskId= taskId;
+    }
+
     public void setTaskName(String taskName) {
         this.taskName = taskName;
     }
+
     public String getSourceColumn() {
         return sourceColumn;
     }
+
     public void setSourceColumn(String sourceColumn) {
         this.sourceColumn = sourceColumn;
     }
-
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -59,10 +77,5 @@ public class Task {
     public String toString() {
         return "Task [taskId=" + taskId + ", taskName=" + taskName + ", sourceColumn=" + sourceColumn + "]";
     }
-
-    
-    
-    
-    
 
 }
