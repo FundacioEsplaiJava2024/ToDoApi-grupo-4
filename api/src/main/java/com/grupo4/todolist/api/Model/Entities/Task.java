@@ -4,7 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 @Entity
 public class Task {
 
@@ -15,14 +16,18 @@ public class Task {
     private String taskName;
 
     private String sourceColumn;
-
+    @ManyToOne // Relación muchos a uno con Columnas
+    @JoinColumn(name = "columna_id")
+    private Columnas columna;
     // Constructor por defecto
     public Task() {}
 
-    public Task(String taskId, String taskName,String sourceColumn) {
+    public Task(String taskId, String taskName,String sourceColumn, Columnas columna) {
         this.taskId = taskId;
         this.taskName = taskName;
         this.sourceColumn = sourceColumn;
+        this.columna= columna;
+        
     }
 
     public String getTaskId() {
@@ -76,6 +81,14 @@ public class Task {
     @Override
     public String toString() {
         return "Task [taskId=" + taskId + ", taskName=" + taskName + ", sourceColumn=" + sourceColumn + "]";
+    }
+
+    public Columnas getColumna() {
+        return columna;
+    }
+
+    public void setColumna(Columnas columna) {
+        this.columna = columna;
     }
 
 }

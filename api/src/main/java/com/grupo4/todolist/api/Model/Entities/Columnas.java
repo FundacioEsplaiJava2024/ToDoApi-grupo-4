@@ -16,8 +16,8 @@ public class Columnas {
     private long id;
     
     private String nombre;
-
-    @OneToMany
+   
+    @OneToMany(mappedBy = "columna")
     private List<Task> listaTareasColumnas;
 
     // Constructor por defecto

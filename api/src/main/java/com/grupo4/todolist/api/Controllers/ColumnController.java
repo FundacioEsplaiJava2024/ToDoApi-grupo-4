@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.grupo4.todolist.api.Model.Entities.Columnas;
+import com.grupo4.todolist.api.Model.Entities.Task;
 import com.grupo4.todolist.api.Model.Services.ColumnService;
 
 @RestController
@@ -58,5 +59,33 @@ public class ColumnController {
             serviceColumn.deletebyId(id);
             return ResponseEntity.ok().build();
         }
-}
+        
+            @Autowired
+            private ColumnService columnService;
+        
+            @PostMapping("/{id}/tasks")
+            public ResponseEntity<Task> addTaskToColumn(@PathVariable Long id, @RequestBody Task task) {
+                // Obtener la columna por su ID
+                Optional<Columnas> optionalColumna = columnService.findById(id);
+        
+                if (!optionalColumna.isPresent()) {
+                    return ResponseEntity.notFound().build();
+                }
+        
+                // Asignar la tarea a la columna
+                Columnas columna = optionalColumna.get();
+                task.setSourceColumn(columna.getNombre()); // Establecer la columna de origen para la tarea
+                columna.getListaTareasColumnas().add(task); // Añadir la tarea a la lista de la columna
+        
+                // Guardar la columna actualizada (con la nueva tarea)
+                columnService.save(columna);
+        
+                return ResponseEntity.status(HttpStatus.CREATED).body(task);
+            }
+        
+            // Otros métodos del controlador para leer y manejar las tareas...
+        }
+        
+
+
 
