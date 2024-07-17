@@ -1,6 +1,10 @@
-package com.grupo4.todolist.api.Model.Entities;
+package com.grupo4.todolist.api.Domain.Entities;
 
+import jakarta.persistence.*;
+
+@Entity
 public class Task {
+    @Id
     private String taskId;
     private String taskName;
     private String sourceColumn;

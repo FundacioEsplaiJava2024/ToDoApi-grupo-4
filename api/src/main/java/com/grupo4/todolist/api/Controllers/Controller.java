@@ -11,9 +11,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.grupo4.todolist.api.Model.Entities.Task;
-import com.grupo4.todolist.api.Model.Greeting;
-import com.grupo4.todolist.api.Model.TaskModel;
+import com.grupo4.todolist.api.Domain.Greeting;
+import com.grupo4.todolist.api.Domain.TaskModel;
+import com.grupo4.todolist.api.Domain.Entities.Task;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
 
 
 @RestController
@@ -39,11 +42,17 @@ public class Controller {
 		return model.listTasks();
 	}
 
+	@RequestMapping(value="path", method=RequestMethod.GET)
+	public String requestMethodName(@RequestParam String param) {
+		return new String();
+	}
+	
 	@PostMapping("/TodolistG4/tasks/add")
-	public String addTask(@RequestBody Task entity) {
+	public String addTask(@RequestBody Task t) {
 		String response;
-
-		int cont = model.addTask(entity);
+		Task task = new Task(t.getTaskId(), t.getTaskName(), t.getSourceColumn());
+		System.out.println(task);
+		int cont = model.addTask(task);
 		
 		if (cont == 1){
 			response = "Tarea agregada correctamente";
@@ -60,7 +69,7 @@ public class Controller {
 	public String editTask(@PathVariable ("id") String id, @RequestBody Task entity) {
 		String response;
 
-		int cont = model.editTask(id ,entity);
+		int cont = model.editTask(entity);
 
 		if (cont == 1) {
 			response = "Tarea editada correctamente";
@@ -74,10 +83,10 @@ public class Controller {
 	}
 	
 	@DeleteMapping("/TodolistG4/tasks/{id}/delete")
-	public String deleteTask(@PathVariable("id")String id){
+	public String deleteTask(@PathVariable("id")Task task){
 		String response;
 
-		int cont = model.deleteTask(id);
+		int cont = model.deleteTask(task);
 		
 		if (cont == 1) {
 			response = "Tarea eliminada correctamente";
@@ -93,7 +102,7 @@ public class Controller {
 	public String moveTask(@PathVariable ("id")String id ,@RequestBody Task entity) {
 		String response;
 		
-		int cont = model.moveTask(id ,entity);
+		int cont = model.moveTask(entity);
 		if (cont == 1) {
 			response = "Tarea movida correctamente";
 		}else if(cont == 0){
