@@ -55,7 +55,6 @@ public class TaskDAO {
             //throw new PersistException("Sql error selecting tasks", OpResult.DB_SELERR.getCode());
             System.out.println("Error "+ex);
         }
-        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"+result);
         return result;
     }
 

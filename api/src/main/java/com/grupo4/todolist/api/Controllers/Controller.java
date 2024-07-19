@@ -25,7 +25,6 @@ public class Controller {
     private static final String template = "Hello, %s!";
 	private final AtomicLong counter = new AtomicLong();
 
-	
 
 	public Controller() {
 		this.model = model; //sus
@@ -83,7 +82,7 @@ public class Controller {
 	}
 	
 	@DeleteMapping("/TodolistG4/tasks/{id}/delete")
-	public String deleteTask(@PathVariable("id")Task task){
+	public String deleteTask(@PathVariable("id")String id, @RequestBody Task task){
 		String response;
 
 		int cont = model.deleteTask(task);

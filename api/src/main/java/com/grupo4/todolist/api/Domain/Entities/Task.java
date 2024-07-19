@@ -8,6 +8,10 @@ public class Task {
     private String taskId;
     private String taskName;
     private String sourceColumn;
+
+    public Task(){
+        
+    }
     
     public Task(String taskId, String taskName, String sourceColumn) {
         this.taskId = taskId;
