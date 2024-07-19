@@ -1,4 +1,4 @@
-package com.grupo4.todolist.api.Domain;
+package com.grupo4.todolist.api;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -24,7 +24,7 @@ public final class DbConnect {
         Properties properties = new Properties();
         FileInputStream input;
         try {
-            input = new FileInputStream("api/src/main/resources/application.properties");
+            input = new FileInputStream("src/main/resources/application.properties");
             System.out.println(input);
             properties.load(input);
             USER = properties.getProperty("user");
