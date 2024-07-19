@@ -1,55 +1,45 @@
 package com.grupo4.todolist.api.Domain.Entities;
 
-import java.util.List;
-
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 
 @Entity
 public class Columnas {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private long column_id;
     
-    private String nombre;
+    private String column_name;
    
-    @OneToMany(mappedBy = "columna")
-    private List<Task> listaTareasColumnas;
+    private long project_id;
 
     // Constructor por defecto
     public Columnas() {}
 
-    public Columnas(long id, String nombre, List<Task> listaTareasColumnas) {
-        this.id = id;
-        this.nombre = nombre;
-        this.listaTareasColumnas = listaTareasColumnas;
+    public Columnas(long column_id, String column_name, long project_id) {
+        this.column_id = column_id;
+        this.column_name = column_name;
+        this.project_id = project_id;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getNameColumn() {
+        return column_name;
     }
 
-    public long getId() {
-        return id;
+    public long getIDColumn() {
+        return column_id;
     }
 
-    public List<Task> getListaTareasColumnas() {
-        return listaTareasColumnas;
+    public long getIDProject() {
+        return project_id;
     }
 
-    public void setListaTareasColumnas(List<Task> listaTareasColumnas) {
-        this.listaTareasColumnas = listaTareasColumnas;
+    public void setNameColumn(String column_name) {
+        this.column_name = column_name;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public void setId(long id) {
-        this.id = id;
+    public void setIDColumn(long column_id) {
+        this.column_id = column_id;
     }
 }

@@ -5,18 +5,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.grupo4.todolist.api.Domain.Entities.Columnas;
-import com.grupo4.todolist.api.Domain.Entities.Task;
-import com.grupo4.todolist.api.Model.Services.ColumnService;
+import com.grupo4.todolist.api.Domain.Services.ColumnService;
 
 @RestController
 @RequestMapping("/api/columns")
@@ -46,7 +38,7 @@ public class ColumnController {
             if(!columna.isPresent()){//si no se encuentra la columna devuelve el codigo 404
                 return ResponseEntity.notFound().build();
             }
-            columna.get().setNombre(nombreCol.getNombre());
+            columna.get().setNameColumn(nombreCol.getNameColumn());
             return ResponseEntity.status(HttpStatus.CREATED).body(serviceColumn.save(nombreCol));
         }
         
@@ -60,28 +52,28 @@ public class ColumnController {
             return ResponseEntity.ok().build();
         }
         
-            @Autowired
-            private ColumnService columnService;
+            // @Autowired
+            // private ColumnService columnService;
         
-            @PostMapping("/{id}/tasks")
-            public ResponseEntity<Task> addTaskToColumn(@PathVariable Long id, @RequestBody Task task) {
-                // Obtener la columna por su ID
-                Optional<Columnas> optionalColumna = columnService.findById(id);
+            // @PostMapping("/{id}/tasks")
+            // public ResponseEntity<Task> addTaskToColumn(@PathVariable Long id, @RequestBody Task task) {
+            //     // Obtener la columna por su ID
+            //     Optional<Columnas> optionalColumna = columnService.findById(id);
         
-                if (!optionalColumna.isPresent()) {
-                    return ResponseEntity.notFound().build();
-                }
+            //     if (!optionalColumna.isPresent()) {
+            //         return ResponseEntity.notFound().build();
+            //     }
         
-                // Asignar la tarea a la columna
-                Columnas columna = optionalColumna.get();
-                task.setSourceColumn(columna.getNombre()); // Establecer la columna de origen para la tarea
-                columna.getListaTareasColumnas().add(task); // Añadir la tarea a la lista de la columna
+            //     // Asignar la tarea a la columna
+            //     Columnas columna = optionalColumna.get();
+            //     task.setSourceColumn(columna.getNombre()); // Establecer la columna de origen para la tarea
+            //     columna.getListaTareasColumnas().add(task); // Añadir la tarea a la lista de la columna
         
-                // Guardar la columna actualizada (con la nueva tarea)
-                columnService.save(columna);
+            //     // Guardar la columna actualizada (con la nueva tarea)
+            //     columnService.save(columna);
         
-                return ResponseEntity.status(HttpStatus.CREATED).body(task);
-            }
+            //     return ResponseEntity.status(HttpStatus.CREATED).body(task);
+            // }
         
             // Otros métodos del controlador para leer y manejar las tareas...
         }

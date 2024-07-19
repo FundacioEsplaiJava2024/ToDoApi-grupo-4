@@ -2,8 +2,9 @@ package com.grupo4.todolist.api.Controllers;
 
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import com.grupo4.todolist.api.Domain.UserService;
+
 import com.grupo4.todolist.api.Domain.Entities.User;
+import com.grupo4.todolist.api.Domain.Services.UserService;
 
 import java.util.List;
 

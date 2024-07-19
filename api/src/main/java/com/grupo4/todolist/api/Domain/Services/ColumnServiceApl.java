@@ -1,4 +1,4 @@
-package com.grupo4.todolist.api.Model.Services;
+package com.grupo4.todolist.api.Domain.Services;
 
 import java.util.Optional;
 
@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.grupo4.todolist.api.Domain.Entities.Columnas;
-import com.grupo4.todolist.api.Model.Repositories.RepositoryColumn;
+import com.grupo4.todolist.api.Domain.Repositories.RepositoryColumn;
 @Service//Obligatorio para indicar que es un servicio
 public class ColumnServiceApl implements ColumnService {
    @Autowired
