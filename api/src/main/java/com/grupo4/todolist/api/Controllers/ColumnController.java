@@ -7,7 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.grupo4.todolist.api.Domain.Entities.Columnas;
+import com.grupo4.todolist.api.Domain.Entities.column_todo;
 import com.grupo4.todolist.api.Domain.Services.ColumnService;
 
 @RestController
@@ -16,15 +16,10 @@ public class ColumnController {
 
     @Autowired
     private ColumnService serviceColumn;
-    //Crear una nueva columna
-    @PostMapping
-    public ResponseEntity<Columnas> create(@RequestBody Columnas columna) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(serviceColumn.save(columna));
-    }
     //Leer una columna
     @GetMapping("{id}")
-        public ResponseEntity<Optional<Columnas>> leerCol (@PathVariable Long id){
-            Optional<Columnas> oCol= serviceColumn.findById(id);
+        public ResponseEntity<Optional<column_todo>> leerCol (@PathVariable Long id){
+            Optional<column_todo> oCol= serviceColumn.findById(id);
 
             if(!oCol.isPresent()){//si no se encuentra la columna devuelve el codigo 404
                 return ResponseEntity.notFound().build();
@@ -33,18 +28,18 @@ public class ColumnController {
         }
         //Cambiar nombre de la columna
         @PutMapping("edit/{id}")
-        public ResponseEntity<Columnas> update(@RequestBody Columnas nombreCol,@PathVariable Long id){
-            Optional<Columnas> columna = serviceColumn.findById(id);
-            if(!columna.isPresent()){//si no se encuentra la columna devuelve el codigo 404
+        public ResponseEntity<column_todo> update(@RequestBody column_todo nombreCol,@PathVariable Long id){
+            Optional<column_todo> column_todo = serviceColumn.findById(id);
+            if(!column_todo.isPresent()){//si no se encuentra la columna devuelve el codigo 404
                 return ResponseEntity.notFound().build();
             }
-            columna.get().setNameColumn(nombreCol.getNameColumn());
+            column_todo.get().setNameColumn(nombreCol.getNameColumn());
             return ResponseEntity.status(HttpStatus.CREATED).body(serviceColumn.save(nombreCol));
         }
         
         //Eliminar columna
         @DeleteMapping("del/{id}")
-        public ResponseEntity<Columnas> delete(@PathVariable Long id){
+        public ResponseEntity<column_todo> delete(@PathVariable Long id){
             if(!serviceColumn.findById(id).isPresent()){//si no se encuentra la columna devuelve el codigo 404
                 return ResponseEntity.notFound().build();
             }

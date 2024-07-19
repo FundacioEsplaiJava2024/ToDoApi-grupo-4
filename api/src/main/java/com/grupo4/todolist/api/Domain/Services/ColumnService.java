@@ -2,14 +2,14 @@ package com.grupo4.todolist.api.Domain.Services;
 
 import java.util.Optional;
 
-import com.grupo4.todolist.api.Domain.Entities.Columnas;
+import com.grupo4.todolist.api.Domain.Entities.column_todo;
 
 public interface ColumnService {
-    public Iterable<Columnas> findAll();
+    public Iterable<column_todo> findAll();
 
-    public Optional<Columnas> findById(Long id);
+    public Optional<column_todo> findById(Long id);
 
-    public Columnas save(Columnas columna);
+    public column_todo save(column_todo column_todo);
 
     public void deletebyId(Long id);
 }

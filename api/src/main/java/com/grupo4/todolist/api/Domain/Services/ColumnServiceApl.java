@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.grupo4.todolist.api.Domain.Entities.Columnas;
+import com.grupo4.todolist.api.Domain.Entities.column_todo;
 import com.grupo4.todolist.api.Domain.Repositories.RepositoryColumn;
 @Service//Obligatorio para indicar que es un servicio
 public class ColumnServiceApl implements ColumnService {
@@ -14,18 +14,18 @@ public class ColumnServiceApl implements ColumnService {
    public RepositoryColumn repositoryColumn;
    @Transactional(readOnly = true)//esto significa que solo puede leer no puede añadir cosas a la base de datos
    @Override
-   public Iterable<Columnas> findAll(){
+   public Iterable<column_todo> findAll(){
       return repositoryColumn.findAll();
    }
    @Transactional(readOnly = true)
    @Override
-   public Optional<Columnas> findById(Long id){
+   public Optional<column_todo> findById(Long id){
       return repositoryColumn.findById(id);
    }
    @Transactional// para indicar que si hará cambios en nuestra base de datos
    @Override
-   public Columnas save(Columnas columna){
-      return repositoryColumn.save(columna);
+   public column_todo save(column_todo column_todo){
+      return repositoryColumn.save(column_todo);
    }
    @Transactional
    @Override
