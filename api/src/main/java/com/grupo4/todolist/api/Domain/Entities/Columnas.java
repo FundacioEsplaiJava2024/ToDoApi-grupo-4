@@ -1,11 +1,12 @@
-package com.grupo4.todolist.api.Model.Entities;
+package com.grupo4.todolist.api.Domain.Entities;
+
+import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-import java.util.List;
 
 @Entity
 public class Columnas {
@@ -15,14 +16,14 @@ public class Columnas {
     private long id;
     
     private String nombre;
-
-    @OneToMany
-    private List<Tasks> listaTareasColumnas;
+   
+    @OneToMany(mappedBy = "columna")
+    private List<Task> listaTareasColumnas;
 
     // Constructor por defecto
     public Columnas() {}
 
-    public Columnas(long id, String nombre, List<Tasks> listaTareasColumnas) {
+    public Columnas(long id, String nombre, List<Task> listaTareasColumnas) {
         this.id = id;
         this.nombre = nombre;
         this.listaTareasColumnas = listaTareasColumnas;
@@ -36,11 +37,11 @@ public class Columnas {
         return id;
     }
 
-    public List<Tasks> getListaTareasColumnas() {
+    public List<Task> getListaTareasColumnas() {
         return listaTareasColumnas;
     }
 
-    public void setListaTareasColumnas(List<Tasks> listaTareasColumnas) {
+    public void setListaTareasColumnas(List<Task> listaTareasColumnas) {
         this.listaTareasColumnas = listaTareasColumnas;
     }
 

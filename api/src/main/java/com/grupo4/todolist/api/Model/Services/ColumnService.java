@@ -2,7 +2,7 @@ package com.grupo4.todolist.api.Model.Services;
 
 import java.util.Optional;
 
-import com.grupo4.todolist.api.Model.Entities.Columnas;
+import com.grupo4.todolist.api.Domain.Entities.Columnas;
 
 public interface ColumnService {
     public Iterable<Columnas> findAll();

@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.grupo4.todolist.api.Model.Entities.Columnas;
+import com.grupo4.todolist.api.Domain.Entities.Columnas;
 import com.grupo4.todolist.api.Model.Repositories.RepositoryColumn;
 @Service//Obligatorio para indicar que es un servicio
 public class ColumnServiceApl implements ColumnService {
