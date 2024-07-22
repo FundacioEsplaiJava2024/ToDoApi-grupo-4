@@ -21,7 +21,7 @@ public class ColumnController {
         public ResponseEntity<Optional<column_todo>> leerCol (@PathVariable Long id){
             Optional<column_todo> oCol= serviceColumn.findById(id);
 
-            if(!oCol.isPresent()){//si no se encuentra la columna devuelve el codigo 404
+            if(oCol.isEmpty()){//si no se encuentra la columna devuelve el codigo 404
                 return ResponseEntity.notFound().build();
             }
             return ResponseEntity.ok(oCol);//metodo de todo ha ido bien y devuelve la columna
@@ -30,7 +30,7 @@ public class ColumnController {
         @PutMapping("edit/{id}")
         public ResponseEntity<column_todo> update(@RequestBody column_todo nombreCol,@PathVariable Long id){
             Optional<column_todo> column_todo = serviceColumn.findById(id);
-            if(!column_todo.isPresent()){//si no se encuentra la columna devuelve el codigo 404
+            if(column_todo.isEmpty()){//si no se encuentra la columna devuelve el codigo 404
                 return ResponseEntity.notFound().build();
             }
             column_todo.get().setNameColumn(nombreCol.getNameColumn());
@@ -40,7 +40,7 @@ public class ColumnController {
         //Eliminar columna
         @DeleteMapping("del/{id}")
         public ResponseEntity<column_todo> delete(@PathVariable Long id){
-            if(!serviceColumn.findById(id).isPresent()){//si no se encuentra la columna devuelve el codigo 404
+            if(serviceColumn.findById(id).isEmpty()){//si no se encuentra la columna devuelve el codigo 404
                 return ResponseEntity.notFound().build();
             }
             serviceColumn.deletebyId(id);
