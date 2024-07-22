@@ -3,6 +3,7 @@ package com.grupo4.todolist.api.Controllers;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,7 +35,8 @@ public class Controller {
 	public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
 		return new Greeting(counter.incrementAndGet(), String.format(template, name));
 	}
-
+	
+	@CrossOrigin(origins = "http://localhost:5173")
 	@GetMapping("/TodolistG4/tasks")//TODO: añadir paginación
 	public static List<Task> listTasks() {
 		
