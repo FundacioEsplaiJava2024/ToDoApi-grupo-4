@@ -14,7 +14,7 @@ public final class DbConnect {
 
     public static final String DRIVER = "com.mysql.cj.jdbc.Driver";
     public static final String PROTOCOL = "jdbc:mysql:";
-    public static final String HOST = "127.0.0.1";
+    public static String HOST = "127.0.0.1:";
     public static final String BD_NAME = "todogroup4";
     public static String USER;
     public static String PASSWORD;
@@ -27,6 +27,8 @@ public final class DbConnect {
             input = new FileInputStream("api/src/main/resources/application.properties");
             System.out.println(input);
             properties.load(input);
+            HOST += properties.getProperty("port");
+            System.out.println(HOST);
             USER = properties.getProperty("user");
             PASSWORD = properties.getProperty("password");
             input.close();
