@@ -4,7 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.*;
 
 @Entity
-public class column_todo {
+public class Column {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,9 +15,9 @@ public class column_todo {
     private long project_id;
 
     // Constructor por defecto
-    public column_todo() {}
+    public Column() {}
 
-    public column_todo(long column_id, String column_name, long project_id) {
+    public Column(long column_id, String column_name, long project_id) {
         this.column_id = column_id;
         this.column_name = column_name;
         this.project_id = project_id;

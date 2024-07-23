@@ -7,7 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.grupo4.todolist.api.Domain.Entities.column_todo;
+import com.grupo4.todolist.api.Domain.Entities.Column;
 import com.grupo4.todolist.api.Domain.Services.ColumnService;
 
 @RestController
@@ -18,8 +18,8 @@ public class ColumnController {
     private ColumnService serviceColumn;
     //Leer una columna
     @GetMapping("{id}")
-        public ResponseEntity<Optional<column_todo>> leerCol (@PathVariable Long id){
-            Optional<column_todo> oCol= serviceColumn.findById(id);
+        public ResponseEntity<Optional<Column>> leerCol (@PathVariable Long id){
+            Optional<Column> oCol= serviceColumn.findById(id);
 
             if(oCol.isEmpty()){//si no se encuentra la columna devuelve el codigo 404
                 return ResponseEntity.notFound().build();
@@ -28,8 +28,8 @@ public class ColumnController {
         }
         //Cambiar nombre de la columna
         @PutMapping("edit/{id}")
-        public ResponseEntity<column_todo> update(@RequestBody column_todo nombreCol,@PathVariable Long id){
-            Optional<column_todo> column_todo = serviceColumn.findById(id);
+        public ResponseEntity<Column> update(@RequestBody Column nombreCol,@PathVariable Long id){
+            Optional<Column> column_todo = serviceColumn.findById(id);
             if(column_todo.isEmpty()){//si no se encuentra la columna devuelve el codigo 404
                 return ResponseEntity.notFound().build();
             }
@@ -39,7 +39,7 @@ public class ColumnController {
         
         //Eliminar columna
         @DeleteMapping("del/{id}")
-        public ResponseEntity<column_todo> delete(@PathVariable Long id){
+        public ResponseEntity<Column> delete(@PathVariable Long id){
             if(serviceColumn.findById(id).isEmpty()){//si no se encuentra la columna devuelve el codigo 404
                 return ResponseEntity.notFound().build();
             }
