@@ -9,7 +9,7 @@ import com.grupo4.todolist.api.Domain.Services.ProjectService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/project")
+@RequestMapping("/TodolistG4/project")
 public class ProjectController {
 
     @Autowired

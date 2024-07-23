@@ -12,6 +12,7 @@ import com.grupo4.todolist.api.Domain.Entities.Task;
 
 
 @RestController
+@RequestMapping("/TodolistG4")
 public class TaskController {
 	private static TaskModel model = new TaskModel(); //sus
     private static final String template = "Hello, %s!";
@@ -27,13 +28,13 @@ public class TaskController {
 		return new Greeting(counter.incrementAndGet(), String.format(template, name));
 	}
 	
-	@GetMapping("/TodolistG4/tasks")//TODO: añadir paginación
+	@GetMapping("/tasks")//TODO: añadir paginación
 	public static List<Task> listTasks() {
 		
 		return model.listTasks();
 	}
 
-	@PostMapping("/TodolistG4/tasks/add")
+	@PostMapping("/tasks/add")
 	public String addTask(@RequestBody Task t) {
 		String response;
 		Task task = new Task(t.getTaskId(), t.getTaskName(), t.getSourceColumn());
@@ -51,7 +52,7 @@ public class TaskController {
 		return response;
 
 	}
-	@PostMapping("/TodolistG4/tasks/{id}/edit")
+	@PostMapping("/tasks/{id}/edit")
 	public String editTask(@PathVariable ("id") String id, @RequestBody Task entity) {
 		String response;
 
@@ -68,7 +69,7 @@ public class TaskController {
 		return response;
 	}
 	
-	@DeleteMapping("/TodolistG4/tasks/{id}/delete")
+	@DeleteMapping("/tasks/{id}/delete")
 	public String deleteTask(@PathVariable("id")String id, @RequestBody Task task){
 		String response;
 
@@ -84,7 +85,7 @@ public class TaskController {
 		return response;
 	}
 
-	@PostMapping("/TodolistG4/tasks/{id}/move")
+	@PostMapping("/tasks/{id}/move")
 	public String moveTask(@PathVariable ("id")String id ,@RequestBody Task entity) {
 		String response;
 		
