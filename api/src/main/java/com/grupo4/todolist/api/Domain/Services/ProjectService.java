@@ -1,4 +1,4 @@
-package com.grupo4.todolist.api.Domain;
+package com.grupo4.todolist.api.Domain.Services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,15 +10,15 @@ import java.util.List;
 
 @Service
 public class ProjectService {
-    
+
     @Autowired
     private ProjectRepository projectRepository;
 
-    public Project createProject (Project project) {
+    public Project createProject(Project project) {
         return projectRepository.save(project);
     }
 
-    public List<Project> getAllProjects(){
+    public List<Project> getAllProjects() {
         return projectRepository.findAll();
     }
 
@@ -35,8 +35,4 @@ public class ProjectService {
         projectRepository.deleteById(project_id);
     }
 
-    public Project updateUserProject(Long user_ID, Project project) {
-        project.setIDUser(user_ID);
-        return projectRepository.save(project);
-    }
 }

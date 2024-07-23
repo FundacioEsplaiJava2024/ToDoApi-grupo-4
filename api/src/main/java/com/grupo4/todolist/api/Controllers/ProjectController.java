@@ -2,8 +2,9 @@ package com.grupo4.todolist.api.Controllers;
 
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import com.grupo4.todolist.api.Domain.ProjectService;
+
 import com.grupo4.todolist.api.Domain.Entities.Project;
+import com.grupo4.todolist.api.Domain.Services.ProjectService;
 
 import java.util.List;
 
@@ -29,18 +30,14 @@ public class ProjectController {
         return ProjectService.getProjectById(id);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/update/{id}")
     public Project updateProject(@PathVariable Long id, @RequestBody Project project) {
         return ProjectService.updateProject(id, project);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public void deleteProject(@PathVariable Long id) {
         ProjectService.deleteProject(id);
     }
 
-    @PutMapping("/user/{id}")
-    public Project updateUserProject(@PathVariable Long id, @RequestBody Project project) {
-        return ProjectService.updateUserProject(id, project);
-    }
 }
