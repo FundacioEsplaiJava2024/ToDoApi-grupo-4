@@ -21,13 +21,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 
 @RestController
-public class Controller {
+public class TaskController {
 	private static TaskModel model = new TaskModel(); //sus
     private static final String template = "Hello, %s!";
 	private final AtomicLong counter = new AtomicLong();
 
 
-	public Controller() {
+	public TaskController() {
 		this.model = model; //sus
 	}
 
@@ -36,18 +36,12 @@ public class Controller {
 		return new Greeting(counter.incrementAndGet(), String.format(template, name));
 	}
 	
-	@CrossOrigin(origins = "http://localhost:5173")
 	@GetMapping("/TodolistG4/tasks")//TODO: añadir paginación
 	public static List<Task> listTasks() {
 		
 		return model.listTasks();
 	}
 
-	@RequestMapping(value="path", method=RequestMethod.GET)
-	public String requestMethodName(@RequestParam String param) {
-		return new String();
-	}
-	
 	@PostMapping("/TodolistG4/tasks/add")
 	public String addTask(@RequestBody Task t) {
 		String response;
