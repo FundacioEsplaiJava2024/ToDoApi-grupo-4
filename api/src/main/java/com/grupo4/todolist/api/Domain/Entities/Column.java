@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name="column_todo")
 public class Column {
     
     @Id
