@@ -20,7 +20,7 @@ public class TaskController {
 
 
 	public TaskController() {
-		this.model = model; //sus
+		this.model = model; //sus ඞ
 	}
 
 	@GetMapping("/greeting")
