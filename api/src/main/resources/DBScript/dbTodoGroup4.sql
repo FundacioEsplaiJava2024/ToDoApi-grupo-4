@@ -15,13 +15,12 @@ DROP SCHEMA IF EXISTS `todogroup4` ;
 -- -----------------------------------------------------
 -- Schema todogroup4
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `todogroup4` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
+CREATE SCHEMA IF NOT EXISTS `todogroup4` DEFAULT CHARACTER SET utf8mb4;
 USE `todogroup4` ;
 
 -- -----------------------------------------------------
 -- Table `todogroup4`.`user`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `todogroup4`.`user` ;
 
 CREATE TABLE IF NOT EXISTS `todogroup4`.`user` (
   `user_ID` INT NOT NULL AUTO_INCREMENT,
@@ -31,8 +30,7 @@ CREATE TABLE IF NOT EXISTS `todogroup4`.`user` (
   PRIMARY KEY (`user_ID`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 4
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+DEFAULT CHARACTER SET = utf8mb4;
 
 CREATE UNIQUE INDEX `user_ID_UNIQUE` ON `todogroup4`.`user` (`user_ID` ASC) VISIBLE;
 
@@ -40,7 +38,6 @@ CREATE UNIQUE INDEX `user_ID_UNIQUE` ON `todogroup4`.`user` (`user_ID` ASC) VISI
 -- -----------------------------------------------------
 -- Table `todogroup4`.`project`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `todogroup4`.`project` ;
 
 CREATE TABLE IF NOT EXISTS `todogroup4`.`project` (
   `project_id` INT NOT NULL AUTO_INCREMENT,
@@ -49,11 +46,11 @@ CREATE TABLE IF NOT EXISTS `todogroup4`.`project` (
   PRIMARY KEY (`project_id`),
   CONSTRAINT `project_ibfk_1`
     FOREIGN KEY (`user_ID`)
-    REFERENCES `todogroup4`.`user` (`user_ID`))
+    REFERENCES `todogroup4`.`user` (`user_ID`)
+    ON DELETE CASCADE)
 ENGINE = InnoDB
 AUTO_INCREMENT = 4
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+DEFAULT CHARACTER SET = utf8mb4;
 
 CREATE UNIQUE INDEX `project_id_UNIQUE` ON `todogroup4`.`project` (`project_id` ASC) VISIBLE;
 
@@ -63,7 +60,6 @@ CREATE INDEX `user_ID` ON `todogroup4`.`project` (`user_ID` ASC) VISIBLE;
 -- -----------------------------------------------------
 -- Table `todogroup4`.`column_todo`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `todogroup4`.`column_todo` ;
 
 CREATE TABLE IF NOT EXISTS `todogroup4`.`column_todo` (
   `column_id` VARCHAR(50) NOT NULL,
@@ -72,22 +68,19 @@ CREATE TABLE IF NOT EXISTS `todogroup4`.`column_todo` (
   PRIMARY KEY (`column_id`),
   CONSTRAINT `project_id_fg`
     FOREIGN KEY (`project_id`)
-    REFERENCES `todogroup4`.`project` (`project_id`))
+    REFERENCES `todogroup4`.`project` (`project_id`)
+    ON DELETE CASCADE)
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+DEFAULT CHARACTER SET = utf8mb4;
 
 CREATE UNIQUE INDEX `column_id_UNIQUE` ON `todogroup4`.`column_todo` (`column_id` ASC) VISIBLE;
 
-CREATE INDEX `task_id_fg_idx` ON `todogroup4`.`column_todo` (`project_id` ASC) VISIBLE;
-
-CREATE INDEX `project_id_fg_idx` ON `todogroup4`.`column_todo` (`project_id` ASC) VISIBLE;
+CREATE UNIQUE INDEX `project_id_fg_idx` ON `todogroup4`.`column_todo` (`project_id` ASC) VISIBLE;
 
 
 -- -----------------------------------------------------
 -- Table `todogroup4`.`task`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `todogroup4`.`task` ;
 
 CREATE TABLE IF NOT EXISTS `todogroup4`.`task` (
   `task_id` VARCHAR(50) NOT NULL,
@@ -96,10 +89,11 @@ CREATE TABLE IF NOT EXISTS `todogroup4`.`task` (
   PRIMARY KEY (`task_id`),
   CONSTRAINT `column_id_fg`
     FOREIGN KEY (`column_id`)
-    REFERENCES `todogroup4`.`column_todo` (`column_id`))
+    REFERENCES `todogroup4`.`column_todo` (`column_id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+DEFAULT CHARACTER SET = utf8mb4;
 
 CREATE UNIQUE INDEX `idtask_UNIQUE` ON `todogroup4`.`task` (`task_id` ASC) VISIBLE;
 

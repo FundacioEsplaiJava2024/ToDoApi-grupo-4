@@ -1,11 +1,9 @@
-package com.grupo4.todolist.api.Domain;
+package com.grupo4.todolist.api;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,14 +22,13 @@ public final class DbConnect {
         Properties properties = new Properties();
         FileInputStream input;
         try {
-            input = new FileInputStream("api/src/main/resources/application.properties");
+            input = new FileInputStream("src/main/resources/application.properties");
             System.out.println(input);
             properties.load(input);
             USER = properties.getProperty("user");
             PASSWORD = properties.getProperty("password");
             input.close();
         } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (IOException e){
             e.printStackTrace();
@@ -42,7 +39,7 @@ public final class DbConnect {
         try {
             //getConnectionProperties(); añadir esta linea en caso de que leamos más adelante los parametros desde fichero.
             Class.forName(DRIVER);
-            BD_URL = String.format("%s//%s/%s", PROTOCOL, HOST, BD_NAME);
+            BD_URL = "%s//%s/%s".formatted(PROTOCOL, HOST, BD_NAME);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(DbConnect.class.getName()).log(Level.SEVERE, null, ex);
             //throw new PersistException("Driver not found", OpResult.DB_DRIVER.getCode());
@@ -57,7 +54,7 @@ public final class DbConnect {
      */
     public Connection getConnection(){
         loadCredentials();
-        BD_URL = String.format("%s//%s/%s", PROTOCOL, HOST, BD_NAME);
+        BD_URL = "%s//%s/%s".formatted(PROTOCOL, HOST, BD_NAME);
         Connection conn=null;
         try {
             conn = DriverManager.getConnection(BD_URL, USER, PASSWORD);
