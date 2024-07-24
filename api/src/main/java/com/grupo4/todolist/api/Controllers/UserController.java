@@ -9,7 +9,7 @@ import com.grupo4.todolist.api.Domain.Services.UserService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/TodolistG4/user")
 public class UserController {
 
     @Autowired
