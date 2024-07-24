@@ -13,31 +13,31 @@ import java.util.List;
 public class ProjectController {
 
     @Autowired
-    private ProjectService ProjectService;
+    private ProjectService projectService;
 
     @PostMapping
     public Project createProject(@RequestBody Project project) {
-        return ProjectService.createProject(project);
+        return projectService.createProject(project);
     }
 
     @GetMapping
     public List<Project> getAllProjects() {
-        return ProjectService.getAllProjects();
+        return projectService.getAllProjects();
     }
 
     @GetMapping("/{id}")
     public Project getProjectById(@PathVariable Long id) {
-        return ProjectService.getProjectById(id);
+        return projectService.getProjectById(id);
     }
 
     @PutMapping("/update/{id}")
     public Project updateProject(@PathVariable Long id, @RequestBody Project project) {
-        return ProjectService.updateProject(id, project);
+        return projectService.updateProject(id, project);
     }
 
     @DeleteMapping("/delete/{id}")
     public void deleteProject(@PathVariable Long id) {
-        ProjectService.deleteProject(id);
+        projectService.deleteProject(id);
     }
 
 }
