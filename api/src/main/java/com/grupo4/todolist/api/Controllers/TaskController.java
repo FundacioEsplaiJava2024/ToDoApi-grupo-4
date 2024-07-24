@@ -3,24 +3,16 @@ package com.grupo4.todolist.api.Controllers;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.grupo4.todolist.api.Domain.Greeting;
 import com.grupo4.todolist.api.Domain.TaskModel;
 import com.grupo4.todolist.api.Domain.Entities.Task;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 
 
 @RestController
+@RequestMapping("/TodolistG4")
 public class TaskController {
 	private static TaskModel model = new TaskModel(); //sus
     private static final String template = "Hello, %s!";
@@ -28,7 +20,7 @@ public class TaskController {
 
 
 	public TaskController() {
-		this.model = model; //sus
+		this.model = model; //sus ඞ
 	}
 
 	@GetMapping("/greeting")
@@ -36,13 +28,13 @@ public class TaskController {
 		return new Greeting(counter.incrementAndGet(), String.format(template, name));
 	}
 	
-	@GetMapping("/TodolistG4/tasks")//TODO: añadir paginación
+	@GetMapping("/tasks")//TODO: añadir paginación
 	public static List<Task> listTasks() {
 		
 		return model.listTasks();
 	}
 
-	@PostMapping("/TodolistG4/tasks/add")
+	@PostMapping("/tasks/add")
 	public String addTask(@RequestBody Task t) {
 		String response;
 		Task task = new Task(t.getTaskId(), t.getTaskName(), t.getSourceColumn());
@@ -60,7 +52,7 @@ public class TaskController {
 		return response;
 
 	}
-	@PostMapping("/TodolistG4/tasks/{id}/edit")
+	@PostMapping("/tasks/{id}/edit")
 	public String editTask(@PathVariable ("id") String id, @RequestBody Task entity) {
 		String response;
 
@@ -77,7 +69,7 @@ public class TaskController {
 		return response;
 	}
 	
-	@DeleteMapping("/TodolistG4/tasks/{id}/delete")
+	@DeleteMapping("/tasks/{id}/delete")
 	public String deleteTask(@PathVariable("id")String id, @RequestBody Task task){
 		String response;
 
@@ -93,7 +85,7 @@ public class TaskController {
 		return response;
 	}
 
-	@PostMapping("/TodolistG4/tasks/{id}/move")
+	@PostMapping("/tasks/{id}/move")
 	public String moveTask(@PathVariable ("id")String id ,@RequestBody Task entity) {
 		String response;
 		

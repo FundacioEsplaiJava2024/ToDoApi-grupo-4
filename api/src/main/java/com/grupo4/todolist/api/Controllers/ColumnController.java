@@ -11,7 +11,7 @@ import com.grupo4.todolist.api.Domain.Entities.Column;
 import com.grupo4.todolist.api.Domain.Services.ColumnService;
 
 @RestController
-@RequestMapping("/api/columns")
+@RequestMapping("/TodolistG4/columns")
 public class ColumnController {
 
     @Autowired
