@@ -26,7 +26,6 @@ CREATE TABLE IF NOT EXISTS `todogroup4`.`user` (
   `user_ID` INT NOT NULL AUTO_INCREMENT,
   `user_name` VARCHAR(50) NOT NULL,
   `user_password` VARCHAR(20) NOT NULL,
-  `user_email` VARCHAR(80) NOT NULL,
   PRIMARY KEY (`user_ID`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 4
