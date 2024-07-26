@@ -7,6 +7,6 @@ import com.grupo4.todolist.api.Domain.Entities.Column;
 
 
 @Repository
-public interface RepositoryColumn extends JpaRepository<Column, Long> {
+public interface RepositoryColumn extends JpaRepository<Column, String> {
 
 }

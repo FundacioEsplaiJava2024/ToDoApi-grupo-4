@@ -22,16 +22,16 @@ public class ProjectService {
         return projectRepository.findAll();
     }
 
-    public Project getProjectById(Long project_id) {
+    public Project getProjectById(String project_id) {
         return projectRepository.findById(project_id).orElse(null);
     }
 
-    public Project updateProject(Long project_id, Project project) {
+    public Project updateProject(String project_id, Project project) {
         project.setIDProject(project_id);
         return projectRepository.save(project);
     }
 
-    public void deleteProject(Long project_id) {
+    public void deleteProject(String project_id) {
         projectRepository.deleteById(project_id);
     }
 

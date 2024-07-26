@@ -1,5 +1,6 @@
 package com.grupo4.todolist.api.Domain.Services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +15,12 @@ public class ColumnServiceApl implements ColumnService {
    public RepositoryColumn repositoryColumn;
    @Transactional(readOnly = true)//esto significa que solo puede leer no puede añadir cosas a la base de datos
    @Override
-   public Iterable<Column> findAll(){
+   public List<Column> findAll(){
       return repositoryColumn.findAll();
    }
    @Transactional(readOnly = true)
    @Override
-   public Optional<Column> findById(Long id){
+   public Optional<Column> findById(String id){
       return repositoryColumn.findById(id);
    }
    @Transactional// para indicar que si hará cambios en nuestra base de datos
@@ -29,7 +30,7 @@ public class ColumnServiceApl implements ColumnService {
    }
    @Transactional
    @Override
-   public void deletebyId(Long id){
+   public void deletebyId(String id){
       repositoryColumn.deleteById(id);
    }
 }

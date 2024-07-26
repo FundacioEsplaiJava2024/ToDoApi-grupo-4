@@ -1,5 +1,6 @@
 package com.grupo4.todolist.api.Controllers;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,14 +12,20 @@ import com.grupo4.todolist.api.Domain.Entities.Column;
 import com.grupo4.todolist.api.Domain.Services.ColumnService;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/TodolistG4/columns")
 public class ColumnController {
 
     @Autowired
     private ColumnService serviceColumn;
+
+    @GetMapping
+    public List<Column> getColumns() {
+        return serviceColumn.findAll();
+    }
     //Leer una columna
     @GetMapping("{id}")
-        public ResponseEntity<Optional<Column>> leerCol (@PathVariable Long id){
+        public ResponseEntity<Optional<Column>> leerCol (@PathVariable String id){
             Optional<Column> oCol= serviceColumn.findById(id);
 
             if(oCol.isEmpty()){//si no se encuentra la columna devuelve el codigo 404
@@ -28,7 +35,7 @@ public class ColumnController {
         }
         //Cambiar nombre de la columna
         @PutMapping("edit/{id}")
-        public ResponseEntity<Column> update(@RequestBody Column nombreCol,@PathVariable Long id){
+        public ResponseEntity<Column> update(@RequestBody Column nombreCol,@PathVariable String id){
             Optional<Column> column_todo = serviceColumn.findById(id);
             if(column_todo.isEmpty()){//si no se encuentra la columna devuelve el codigo 404
                 return ResponseEntity.notFound().build();
@@ -39,7 +46,7 @@ public class ColumnController {
         
         //Eliminar columna
         @DeleteMapping("del/{id}")
-        public ResponseEntity<Column> delete(@PathVariable Long id){
+        public ResponseEntity<Column> delete(@PathVariable String id){
             if(serviceColumn.findById(id).isEmpty()){//si no se encuentra la columna devuelve el codigo 404
                 return ResponseEntity.notFound().build();
             }
@@ -51,7 +58,7 @@ public class ColumnController {
             // private ColumnService columnService;
         
             // @PostMapping("/{id}/tasks")
-            // public ResponseEntity<Task> addTaskToColumn(@PathVariable Long id, @RequestBody Task task) {
+            // public ResponseEntity<Task> addTaskToColumn(@PathVariable String id, @RequestBody Task task) {
             //     // Obtener la columna por su ID
             //     Optional<Columnas> optionalColumna = columnService.findById(id);
         

@@ -9,6 +9,7 @@ import com.grupo4.todolist.api.Domain.Services.UserService;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/TodolistG4/user")
 public class UserController {
 

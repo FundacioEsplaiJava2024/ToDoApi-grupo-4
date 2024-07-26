@@ -12,6 +12,7 @@ import com.grupo4.todolist.api.Domain.Entities.Task;
 
 
 @RestController
+@CrossOrigin
 @RequestMapping("/TodolistG4")
 public class TaskController {
 	private static TaskModel model = new TaskModel(); //sus

@@ -9,6 +9,7 @@ import com.grupo4.todolist.api.Domain.Services.ProjectService;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/TodolistG4/project")
 public class ProjectController {
 
@@ -26,17 +27,17 @@ public class ProjectController {
     }
 
     @GetMapping("/{id}")
-    public Project getProjectById(@PathVariable Long id) {
+    public Project getProjectById(@PathVariable String id) {
         return projectService.getProjectById(id);
     }
 
     @PutMapping("/update/{id}")
-    public Project updateProject(@PathVariable Long id, @RequestBody Project project) {
+    public Project updateProject(@PathVariable String id, @RequestBody Project project) {
         return projectService.updateProject(id, project);
     }
 
     @DeleteMapping("/delete/{id}")
-    public void deleteProject(@PathVariable Long id) {
+    public void deleteProject(@PathVariable String id) {
         projectService.deleteProject(id);
     }
 
