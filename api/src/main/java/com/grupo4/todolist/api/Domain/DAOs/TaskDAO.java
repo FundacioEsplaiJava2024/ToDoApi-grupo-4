@@ -63,6 +63,28 @@ public class TaskDAO {
         }
         return result;
     }
+    public List<Task> getTasksByColumnId(String columnId){
+        List<Task> result = new ArrayList<>();
+        try (Connection conn = dbConnect.getConnection()) {
+            // SQL query to get all existing tasks
+            String query = "select * from task where column_id=?";
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setString(1, columnId);
+            ResultSet rs = ps.executeQuery();
+            //Fetch data
+            while (rs.next()) {
+                Task task = fromResultSet(rs);
+                if (task != null) {
+                    result.add(task);
+                }
+            }
+        } catch (SQLException ex) {
+            //throw new PersistException("Sql error selecting tasks", OpResult.DB_SELERR.getCode());
+            System.out.println("Error "+ex);
+            //log de exception
+        }
+        return result;
+    }
 
 	public int insert(Task task) {
         //we start with the result = -1 because this gives us more information

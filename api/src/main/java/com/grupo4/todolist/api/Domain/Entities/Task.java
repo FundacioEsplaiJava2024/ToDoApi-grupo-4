@@ -8,6 +8,7 @@ public class Task {
     private String taskId;
     private String taskName;
     private String sourceColumn;
+    private String projectId;
 
     public Task(){
         

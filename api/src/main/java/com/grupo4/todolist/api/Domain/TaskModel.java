@@ -3,13 +3,13 @@ package com.grupo4.todolist.api.Domain;
 import java.util.List;
 
 import com.grupo4.todolist.api.Domain.Entities.Task;
-import com.grupo4.todolist.api.Domain.Repositories.TaskRepo;
+import com.grupo4.todolist.api.Domain.Repositories.TaskRepository;
 
 public class TaskModel {
-    private final TaskRepo taskRepo;
+    private final TaskRepository taskRepo;
 
     public TaskModel() {
-        this.taskRepo = new TaskRepo();
+        this.taskRepo = new TaskRepository();
     }
 
     public List<Task> listTasks(){
