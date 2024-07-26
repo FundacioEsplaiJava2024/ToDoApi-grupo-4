@@ -39,7 +39,7 @@ CREATE UNIQUE INDEX `user_ID_UNIQUE` ON `todogroup4`.`user` (`user_ID` ASC) VISI
 -- -----------------------------------------------------
 
 CREATE TABLE IF NOT EXISTS `todogroup4`.`project` (
-  `project_id` INT NOT NULL AUTO_INCREMENT,
+  `project_id` CHAR(200) NOT NULL,
   `project_name` CHAR(50) NOT NULL,
   `user_ID` INT NOT NULL,
   PRIMARY KEY (`project_id`),
@@ -63,7 +63,7 @@ CREATE INDEX `user_ID` ON `todogroup4`.`project` (`user_ID` ASC) VISIBLE;
 CREATE TABLE IF NOT EXISTS `todogroup4`.`column_todo` (
   `column_id` VARCHAR(50) NOT NULL,
   `column_name` VARCHAR(50) NOT NULL,
-  `project_id` INT NULL DEFAULT NULL,
+  `project_id` CHAR(200) NOT NULL,
   PRIMARY KEY (`column_id`),
   CONSTRAINT `project_id_fg`
     FOREIGN KEY (`project_id`)
