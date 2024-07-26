@@ -6,7 +6,6 @@ import java.util.List;
 
 import com.grupo4.todolist.api.Domain.DbConnect;
 import com.grupo4.todolist.api.Domain.Entities.Column;
-import com.grupo4.todolist.api.Domain.Entities.Task;
 
 public class ColumnDAO {
 

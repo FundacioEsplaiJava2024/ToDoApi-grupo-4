@@ -29,7 +29,7 @@ public class TaskController {
 		return new Greeting(counter.incrementAndGet(), String.format(template, name));
 	}
 	
-	@GetMapping("/tasks")//TODO: añadir paginación
+	@GetMapping("/tasks")
 	public static List<Task> listTasks() {
 		
 		return model.listTasks();
