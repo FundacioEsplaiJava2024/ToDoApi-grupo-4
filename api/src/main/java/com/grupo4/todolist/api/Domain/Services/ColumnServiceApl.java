@@ -8,11 +8,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.grupo4.todolist.api.Domain.Entities.Column;
-import com.grupo4.todolist.api.Domain.Repositories.ColumnRepository;
+import com.grupo4.todolist.api.Domain.Repositories.ColumnJPARepository;
 @Service//Obligatorio para indicar que es un servicio
 public class ColumnServiceApl implements ColumnService {
    @Autowired
-   public ColumnRepository repositoryColumn;
+   public ColumnJPARepository repositoryColumn;
    @Transactional(readOnly = true)//esto significa que solo puede leer no puede añadir cosas a la base de datos
    @Override
    public List<Column> findAll(){

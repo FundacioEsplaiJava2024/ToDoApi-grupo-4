@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.grupo4.todolist.api.Domain.DbConnect;
 import com.grupo4.todolist.api.Domain.Entities.Column;
+import com.grupo4.todolist.api.Domain.Entities.Task;
 
 public class ColumnDAO {
 
@@ -14,7 +15,8 @@ public class ColumnDAO {
     public ColumnDAO() {
         this.dbConnect = new DbConnect();
     }
-        private Column fromResultSet(ResultSet rs){
+
+    private Column fromResultSet(ResultSet rs) {
         Column column;
         try {
             // Retrieve data from the result set
@@ -26,23 +28,22 @@ public class ColumnDAO {
 
             return column;
         } catch (SQLException ex) {
-            //Log de exception and return null
+            // Log de exception and return null
 
-            //throw new PersistException("Sql error", OpResult.DB_SQLERR.getCode());
-            System.out.println("Error "+ex);
+            // throw new PersistException("Sql error", OpResult.DB_SQLERR.getCode());
+            System.out.println("Error " + ex);
             return null;
         }
     }
 
-        public List<Column> getColumnsByProjectId(String projectId){
+    public List<Column> getColumn() {
         List<Column> result = new ArrayList<>();
         try (Connection conn = dbConnect.getConnection()) {
-            // SQL query to get all existing Columns
-            String query = "select * from column where project_id=?";
-            PreparedStatement ps = conn.prepareStatement(query);
-            ps.setString(1, projectId);
-            ResultSet rs = ps.executeQuery();
-            //Fetch data
+            // SQL query to get all existing column
+            String query = "select * from column_todo";
+            Statement stm = conn.createStatement();
+            ResultSet rs = stm.executeQuery(query);
+            // Fetch data
             while (rs.next()) {
                 Column column = fromResultSet(rs);
                 if (column != null) {
@@ -50,9 +51,34 @@ public class ColumnDAO {
                 }
             }
         } catch (SQLException ex) {
-            //throw new PersistException("Sql error selecting columns", OpResult.DB_SELERR.getCode());
-            System.out.println("Error "+ex);
-            //log de exception
+            // throw new PersistException("Sql error selecting column",
+            // OpResult.DB_SELERR.getCode());
+            System.out.println("Error " + ex);
+            // log de exception
+        }
+        return result;
+    }
+
+    public List<Column> getColumnsByProjectId(String projectId) {
+        List<Column> result = new ArrayList<>();
+        try (Connection conn = dbConnect.getConnection()) {
+            // SQL query to get all existing Columns
+            String query = "select * from column where project_id=?";
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setString(1, projectId);
+            ResultSet rs = ps.executeQuery();
+            // Fetch data
+            while (rs.next()) {
+                Column column = fromResultSet(rs);
+                if (column != null) {
+                    result.add(column);
+                }
+            }
+        } catch (SQLException ex) {
+            // throw new PersistException("Sql error selecting columns",
+            // OpResult.DB_SELERR.getCode());
+            System.out.println("Error " + ex);
+            // log de exception
         }
         return result;
     }
