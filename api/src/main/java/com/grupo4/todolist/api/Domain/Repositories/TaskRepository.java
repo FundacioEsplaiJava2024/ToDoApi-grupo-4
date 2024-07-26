@@ -6,10 +6,10 @@ import java.util.List;
 import com.grupo4.todolist.api.Domain.DAOs.TaskDAO;
 import com.grupo4.todolist.api.Domain.Entities.Task;
 
-public class TaskRepo {
+public class TaskRepository {
     private final TaskDAO taskDAO;
 
-    public TaskRepo() {
+    public TaskRepository() {
         this.taskDAO = new TaskDAO();
     }
 
@@ -33,4 +33,5 @@ public class TaskRepo {
 		int cont = taskDAO.move(task);
         return cont;
 	}
+    
 }
