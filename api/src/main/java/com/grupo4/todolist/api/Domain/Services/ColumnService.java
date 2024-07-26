@@ -13,4 +13,6 @@ public interface ColumnService {
     public Column save(Column column_todo);
 
     public void deletebyId(String id);
+    
+    public List<Column> findColumnsByProject(String id);
 }
