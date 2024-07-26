@@ -34,13 +34,13 @@ public class ProjectDAO {
         }
     }
 
-        public List<Project> getProjectsByUserId(String projectId){
+        public List<Project> getProjectsByUserId(String userId){
         List<Project> result = new ArrayList<>();
         try (Connection conn = dbConnect.getConnection()) {
             // SQL query to get all existing Projects
-            String query = "select * from project where project_id=?";
+            String query = "select * from project where user_ID=?";
             PreparedStatement ps = conn.prepareStatement(query);
-            ps.setString(1, projectId);
+            ps.setString(1, userId);
             ResultSet rs = ps.executeQuery();
             //Fetch data
             while (rs.next()) {
