@@ -15,6 +15,9 @@ public class TaskModel {
     public List<Task> listTasks(){
         return taskRepo.askTask();
     }
+    public List<Task> listTasksByColumn(String id){
+        return taskRepo.askTasksByColumn(id);
+    }
     public  int addTask(Task task){
         int cont = -1; 
         cont = taskRepo.addTask(task);
