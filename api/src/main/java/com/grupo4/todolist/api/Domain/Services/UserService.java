@@ -14,11 +14,16 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public User createUser (User user) {
+    //nuevo para verificar si el usuario ya existe. mirar lo del email, marca error debido a que todavia no esta configurado...
+    //configure userRepertori para lo del mail, solucionado :3
+    public User createUser(User user) {
+        if (userRepository.findByEmail(user.getEmail()).isPresent()) {
+            throw new RuntimeException("User already exists");
+        }
         return userRepository.save(user);
     }
 
-    public List<User> getAllUsers(){
+    public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 
