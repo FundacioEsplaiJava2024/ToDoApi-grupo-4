@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.grupo4.todolist.api.Domain.Entities.Column;
+import com.grupo4.todolist.api.Domain.Entities.Task;
 import com.grupo4.todolist.api.Domain.Services.ColumnService;
 
 @RestController
@@ -23,46 +24,56 @@ public class ColumnController {
     public List<Column> findAll() {
         return serviceColumn.findAll();
     }
-    //Leer una columna
-        @GetMapping("{id}")
-        public ResponseEntity<Optional<Column>> leerCol (@PathVariable String id){
-            Optional<Column> oCol= serviceColumn.findById(id);
 
-            if(oCol.isEmpty()){//si no se encuentra la columna devuelve el codigo 404
-                return ResponseEntity.notFound().build();
-            }
-            return ResponseEntity.ok(oCol);//metodo de todo ha ido bien y devuelve la columna
-        }
+    // Añadir Columna
+    // Método para agregar una nueva columna
 
-        @GetMapping("/project/{id}")
-        public List<Column> getColumnsByProject (@PathVariable String id){
-            return serviceColumn.findColumnsByProject(id);
-        }
+    // Leer una columna
+    @GetMapping("{id}")
+    public ResponseEntity<Optional<Column>> leerCol(@PathVariable String id) {
+        Optional<Column> oCol = serviceColumn.findById(id);
 
-        //Cambiar nombre de la columna
-        @PostMapping("/edit/{id}")
-        public ResponseEntity<Column> update(@RequestBody Column nombreCol,@PathVariable String id){
-            System.out.println("EEE "+id+ " "+ nombreCol);
-            Optional<Column> column_todo = serviceColumn.findById(id);
-            if(column_todo.isEmpty()){//si no se encuentra la columna devuelve el codigo 404
-                return ResponseEntity.notFound().build();
-            }
-            column_todo.get().setNameColumn(nombreCol.getNameColumn());
-            return ResponseEntity.status(HttpStatus.CREATED).body(serviceColumn.save(nombreCol));
+        if (oCol.isEmpty()) {// si no se encuentra la columna devuelve el codigo 404
+            return ResponseEntity.notFound().build();
         }
-        
-        //Eliminar columna
-        @DeleteMapping("del/{id}")
-        public ResponseEntity<Column> delete(@PathVariable String id){
-            if(serviceColumn.findById(id).isEmpty()){//si no se encuentra la columna devuelve el codigo 404
-                return ResponseEntity.notFound().build();
-            }
-            serviceColumn.deletebyId(id);
-            return ResponseEntity.ok().build();
-        }
-        
+        return ResponseEntity.ok(oCol);// metodo de todo ha ido bien y devuelve la columna
     }
-        
 
+    @GetMapping("/project/{id}")
+    public List<Column> getColumnsByProject(@PathVariable String id) {
+        return serviceColumn.findColumnsByProject(id);
+    }
 
+    // Cambiar nombre de la columna
+    @PostMapping("/edit/{id}")
+    public ResponseEntity<Column> update(@RequestBody Column nombreCol, @PathVariable String id) {
+        System.out.println("EEE " + id + " " + nombreCol);
+        Optional<Column> column_todo = serviceColumn.findById(id);
+        if (column_todo.isEmpty()) {// si no se encuentra la columna devuelve el codigo 404
+            return ResponseEntity.notFound().build();
+        }
+        column_todo.get().setNameColumn(nombreCol.getNameColumn());
+        return ResponseEntity.status(HttpStatus.CREATED).body(serviceColumn.save(nombreCol));
+    }
 
+    // Eliminar columna
+    @DeleteMapping("del/{id}")
+    public ResponseEntity<Column> delete(@PathVariable String id) {
+        if (serviceColumn.findById(id).isEmpty()) {// si no se encuentra la columna devuelve el codigo 404
+            return ResponseEntity.notFound().build();
+        }
+        serviceColumn.deletebyId(id);
+        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/add")
+    public ResponseEntity<Column> addColumn(@RequestBody Column column) {
+        try {
+            Column newColumn = serviceColumn.save(column);
+            return ResponseEntity.status(HttpStatus.CREATED).body(newColumn);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+    }
+
+}
