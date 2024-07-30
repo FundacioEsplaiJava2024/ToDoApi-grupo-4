@@ -34,6 +34,11 @@ public class TaskController {
 		
 		return model.listTasks();
 	}
+	@GetMapping("/tasks/column/{id}")//TODO: añadir paginación
+	public static List<Task> listTasksByCol(@PathVariable ("id") String id) {
+		
+		return model.listTasksByColumn(id);
+	}
 
 	@PostMapping("/tasks/add")
 	public String addTask(@RequestBody Task t) {

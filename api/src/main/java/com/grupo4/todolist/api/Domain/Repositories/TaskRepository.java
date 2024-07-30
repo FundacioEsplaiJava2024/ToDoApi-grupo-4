@@ -33,5 +33,9 @@ public class TaskRepository {
 		int cont = taskDAO.move(task);
         return cont;
 	}
+
+    public List<Task> askTasksByColumn(String id) {
+        return taskDAO.getTasksByColumnId(id);
+    }
     
 }

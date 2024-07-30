@@ -62,13 +62,14 @@ public class ColumnDAO {
         List<Column> result = new ArrayList<>();
         try (Connection conn = dbConnect.getConnection()) {
             // SQL query to get all existing Columns
-            String query = "select * from column where project_id=?";
+            String query = "select * from `column` where project_id=?";
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setString(1, projectId);
             ResultSet rs = ps.executeQuery();
             // Fetch data
             while (rs.next()) {
                 Column column = fromResultSet(rs);
+                System.out.println("AAAA "+column);
                 if (column != null) {
                     result.add(column);
                 }

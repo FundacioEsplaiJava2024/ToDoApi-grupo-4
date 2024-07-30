@@ -24,7 +24,7 @@ public class ColumnController {
         return serviceColumn.findAll();
     }
     //Leer una columna
-    @GetMapping("{id}")
+        @GetMapping("{id}")
         public ResponseEntity<Optional<Column>> leerCol (@PathVariable String id){
             Optional<Column> oCol= serviceColumn.findById(id);
 
@@ -33,6 +33,12 @@ public class ColumnController {
             }
             return ResponseEntity.ok(oCol);//metodo de todo ha ido bien y devuelve la columna
         }
+
+        @GetMapping("/project/{id}")
+        public List<Column> getColumnsByProject (@PathVariable String id){
+            return serviceColumn.findColumnsByProject(id);
+        }
+
         //Cambiar nombre de la columna
         @PutMapping("edit/{id}")
         public ResponseEntity<Column> update(@RequestBody Column nombreCol,@PathVariable String id){

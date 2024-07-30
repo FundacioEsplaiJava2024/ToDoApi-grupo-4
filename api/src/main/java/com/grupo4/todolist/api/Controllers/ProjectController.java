@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/TodolistG4/project")
+@RequestMapping("/TodolistG4/projects")
 public class ProjectController {
 
     @Autowired
