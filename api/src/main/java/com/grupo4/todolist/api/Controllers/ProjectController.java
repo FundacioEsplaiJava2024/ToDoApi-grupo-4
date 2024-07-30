@@ -16,12 +16,12 @@ public class ProjectController {
     @Autowired
     private ProjectService projectService;
 
-    @PostMapping
+    @PostMapping("/add")
     public Project createProject(@RequestBody Project project) {
         return projectService.createProject(project);
     }
 
-    @GetMapping
+    @GetMapping("/list")
     public List<Project> getAllProjects() {
         return projectService.getAllProjects();
     }
