@@ -35,9 +35,9 @@ public class TaskModel {
         cont = taskRepo.delete(id);
         return cont;
     }
-    public  int moveTask(Task task){
+    public  int moveTask(String id, String newCol){
         int cont = -1; 
-        cont = taskRepo.move(task);
+        cont = taskRepo.move(id, newCol);
         return cont;
     }
 }

@@ -9,6 +9,7 @@ import com.grupo4.todolist.api.Domain.Greeting;
 import com.grupo4.todolist.api.Domain.TaskModel;
 import com.grupo4.todolist.api.Domain.Entities.Task;
 import com.grupo4.todolist.api.Requests.TaskEditRequest;
+import com.grupo4.todolist.api.Requests.TaskMoveRequest;
 
 
 
@@ -62,7 +63,6 @@ public class TaskController {
 	@PostMapping("/tasks/{id}/edit")
 	public String editTask(@PathVariable ("id") String id, @RequestBody TaskEditRequest request) {
 		String response;
-		System.out.println("a"+ id+" "+request.newName());
 		int cont = model.editTask(id, request.newName());
 		
 		if (cont == 1) {
@@ -93,10 +93,10 @@ public class TaskController {
 	}
 
 	@PostMapping("/tasks/{id}/move")
-	public String moveTask(@PathVariable ("id")String id ,@RequestBody Task entity) {
+	public String moveTask(@PathVariable ("id")String id ,@RequestBody TaskMoveRequest entity) {
 		String response;
 		
-		int cont = model.moveTask(entity);
+		int cont = model.moveTask(id, entity.newColumn());
 		if (cont == 1) {
 			response = "Tarea movida correctamente";
 		}else if(cont == 0){

@@ -143,14 +143,14 @@ public class TaskDAO {
         }
         return result;
 	}
-    public int move(Task task) {
+    public int move(String id, String newCol) {
 		int result = -1;
         try (Connection conn = dbConnect.getConnection()) {
             // SQL query to move a task
             String query = "update task set column_id=? where task_id=?";
             PreparedStatement ps = conn.prepareStatement(query);
-            ps.setString(1, task.getSourceColumn());
-            ps.setString(2, task.getTaskId());
+            ps.setString(1, newCol);
+            ps.setString(2, id);
            
             result = ps.executeUpdate();
         } catch (SQLException ex) {
