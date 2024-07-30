@@ -23,9 +23,11 @@ public class TaskModel {
         cont = taskRepo.addTask(task);
         return cont;
     }
-    public  int editTask(Task task){
+    public  int editTask(String id, String newName){
+        System.out.println("PATATA");
         int cont = -1; 
-        cont = taskRepo.edit(task);
+        cont = taskRepo.edit(id,newName);
+        System.out.println("end patata");
         return cont;
     }
     public  int deleteTask(Task task){

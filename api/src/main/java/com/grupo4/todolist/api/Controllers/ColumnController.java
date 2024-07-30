@@ -40,8 +40,9 @@ public class ColumnController {
         }
 
         //Cambiar nombre de la columna
-        @PutMapping("edit/{id}")
+        @PostMapping("/edit/{id}")
         public ResponseEntity<Column> update(@RequestBody Column nombreCol,@PathVariable String id){
+            System.out.println("EEE "+id+ " "+ nombreCol);
             Optional<Column> column_todo = serviceColumn.findById(id);
             if(column_todo.isEmpty()){//si no se encuentra la columna devuelve el codigo 404
                 return ResponseEntity.notFound().build();

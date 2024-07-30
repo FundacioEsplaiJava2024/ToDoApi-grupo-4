@@ -107,15 +107,16 @@ public class TaskDAO {
         }
         return result;
 	}
-    public int edit(Task task) {
+    public int edit(String id, String newName) {
 		int result = -1;
         try (Connection conn = dbConnect.getConnection()) {
             // SQL query to edit a task
+            System.out.println("AYUDA"+ newName);
             String query = "update task set task_name=? where task_id=?";
             PreparedStatement ps = conn.prepareStatement(query);
             // Set parameters for the prepared statement
-            ps.setString(1, task.getTaskName());
-            ps.setString(2, task.getTaskId());
+            ps.setString(1, newName);
+            ps.setString(2, id);
             // Execute the update and get the result
            
             result = ps.executeUpdate();
