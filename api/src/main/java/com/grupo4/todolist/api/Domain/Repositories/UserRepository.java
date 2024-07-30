@@ -16,9 +16,8 @@ public class UserRepository {
         return cont;
     }
 
-    public User getUserId(String username, String password) {
-       User u = null;
-            u = userDAO.getUser(username, password);
+    public long getUserId(String username, String password) {
+       long u = userDAO.getUser(username, password);
        return u;
     }
     

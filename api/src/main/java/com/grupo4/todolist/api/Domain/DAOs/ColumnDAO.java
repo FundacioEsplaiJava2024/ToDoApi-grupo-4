@@ -39,7 +39,7 @@ public class ColumnDAO {
         List<Column> result = new ArrayList<>();
         try (Connection conn = dbConnect.getConnection()) {
             // SQL query to get all existing column
-            String query = "select * from column_todo";
+            String query = "select * from ´column´";
             Statement stm = conn.createStatement();
             ResultSet rs = stm.executeQuery(query);
             // Fetch data
@@ -62,7 +62,7 @@ public class ColumnDAO {
         List<Column> result = new ArrayList<>();
         try (Connection conn = dbConnect.getConnection()) {
             // SQL query to get all existing Columns
-            String query = "select * from `column_todo` where project_id=?";
+            String query = "select * from `column` where project_id=?";
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setString(1, projectId);
             ResultSet rs = ps.executeQuery();

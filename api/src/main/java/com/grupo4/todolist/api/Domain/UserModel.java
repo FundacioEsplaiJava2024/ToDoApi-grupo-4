@@ -14,8 +14,8 @@ public class UserModel {
         cont = userRepo.addUser(username, password);
         return cont;
     }
-    public User getUserById(String username, String password){
-        User u = null;
+    public long getUserById(String username, String password){
+        long u = -1;
         return u = userRepo.getUserId(username, password);
     }
 

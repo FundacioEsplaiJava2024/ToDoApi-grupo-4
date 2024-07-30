@@ -1,17 +1,15 @@
 package com.grupo4.todolist.api.Controllers;
 
-import org.springframework.web.bind.annotation.*;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import com.grupo4.todolist.api.Domain.TaskModel;
 import com.grupo4.todolist.api.Domain.UserModel;
-import com.grupo4.todolist.api.Domain.Entities.Task;
 import com.grupo4.todolist.api.Domain.Entities.User;
 import com.grupo4.todolist.api.Requests.UserRegisterRequest;
-
-import java.util.List;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 @RestController
@@ -27,20 +25,19 @@ public class UserController {
 		int cont = model.addUser(request.username(),request.password());
 		
 		if (cont == 1){
-			response = "User agregada correctamente";
+			response = "User agregado correctamente";
 		}else if(cont == 0){
-			response = "Error al agregar tarea";
+			response = "Error al agregar user";
 		}else{
-			response = "Error al enviar tarea";
+			response = "Error al enviar user";
 		}
 
 		return response;
 
 	}
     @GetMapping("/login")
-    public Long login(@RequestBody UserRegisterRequest request) {
-        User u = model.getUserById(request.username(),request.password());
-        Long id = u.getID();
+    public long login(@RequestBody UserRegisterRequest request) {
+        long id = model.getUserById(request.username(),request.password());
         return id;
     }
     
