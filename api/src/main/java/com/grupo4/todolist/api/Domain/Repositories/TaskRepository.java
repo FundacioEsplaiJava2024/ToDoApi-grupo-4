@@ -25,8 +25,8 @@ public class TaskRepository {
 		int cont = taskDAO.edit(id, newName);
         return cont;
 	}
-    public  int delete(Task task) {
-		int cont = taskDAO.delete(task);
+    public  int delete(String id) {
+		int cont = taskDAO.delete(id);
         return cont;
 	}
     public  int move(Task task) {

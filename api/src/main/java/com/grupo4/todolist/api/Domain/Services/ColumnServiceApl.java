@@ -14,6 +14,7 @@ import com.grupo4.todolist.api.Domain.Repositories.ColumnRepository;
 public class ColumnServiceApl implements ColumnService {
    @Autowired
    public ColumnRepository colRep;
+   @Autowired
    public ColumnJPARepository repositoryColumn;
    @Transactional(readOnly = true)//esto significa que solo puede leer no puede añadir cosas a la base de datos
    @Override

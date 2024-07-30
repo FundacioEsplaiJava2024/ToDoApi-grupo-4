@@ -30,9 +30,9 @@ public class TaskModel {
         System.out.println("end patata");
         return cont;
     }
-    public  int deleteTask(Task task){
+    public  int deleteTask(String id){
         int cont = -1; 
-        cont = taskRepo.delete(task);
+        cont = taskRepo.delete(id);
         return cont;
     }
     public  int moveTask(Task task){
