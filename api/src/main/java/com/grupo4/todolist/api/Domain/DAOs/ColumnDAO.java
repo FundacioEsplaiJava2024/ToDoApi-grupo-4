@@ -68,10 +68,10 @@ public class ColumnDAO {
             ResultSet rs = ps.executeQuery();
             // Fetch data
             while (rs.next()) {
-                Column column_todo = fromResultSet(rs);
-                System.out.println("AAAA "+column_todo);
-                if (column_todo != null) {
-                    result.add(column_todo);
+                Column column = fromResultSet(rs);
+                System.out.println("AAAA "+column);
+                if (column != null) {
+                    result.add(column);
                 }
             }
         } catch (SQLException ex) {

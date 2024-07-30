@@ -77,10 +77,10 @@ public class TaskController {
 	}
 	
 	@DeleteMapping("/tasks/{id}/delete")
-	public String deleteTask(@PathVariable("id")String id, @RequestBody Task task){
+	public String deleteTask(@PathVariable("id")String id){
 		String response;
 
-		int cont = model.deleteTask(task);
+		int cont = model.deleteTask(id);
 		
 		if (cont == 1) {
 			response = "Tarea eliminada correctamente";

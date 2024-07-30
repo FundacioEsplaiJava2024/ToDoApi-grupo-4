@@ -127,13 +127,13 @@ public class TaskDAO {
         }
         return result;
 	}
-    public int delete(Task task) {
+    public int delete(String id) {
 		int result = -1;
         try (Connection conn = dbConnect.getConnection()) {
             // SQL query to delete a task
             String query = "delete from task where task_id=?";
             PreparedStatement ps = conn.prepareStatement(query);
-            ps.setString(1, task.getTaskId());
+            ps.setString(1, id);
            
             result = ps.executeUpdate();
         } catch (SQLException ex) {
