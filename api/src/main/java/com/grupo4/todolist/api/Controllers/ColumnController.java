@@ -20,7 +20,7 @@ public class ColumnController {
     private ColumnService serviceColumn;
 
     @GetMapping
-    public List<Column> getColumns() {
+    public List<Column> findAll() {
         return serviceColumn.findAll();
     }
     //Leer una columna

@@ -6,7 +6,6 @@ import java.util.List;
 
 import com.grupo4.todolist.api.Domain.DbConnect;
 import com.grupo4.todolist.api.Domain.Entities.Column;
-import com.grupo4.todolist.api.Domain.Entities.Task;
 
 public class ColumnDAO {
 
@@ -17,16 +16,16 @@ public class ColumnDAO {
     }
 
     private Column fromResultSet(ResultSet rs) {
-        Column column;
+        Column column_todo;
         try {
             // Retrieve data from the result set
             String id = rs.getString("column_id");
             String name = rs.getString("column_name");
             String project_id = rs.getString("project_id");
             // Create a new column object with the retrieved data
-            column = new Column(id, name, project_id);
+            column_todo = new Column(id, name, project_id);
 
-            return column;
+            return column_todo;
         } catch (SQLException ex) {
             // Log de exception and return null
 
@@ -45,9 +44,9 @@ public class ColumnDAO {
             ResultSet rs = stm.executeQuery(query);
             // Fetch data
             while (rs.next()) {
-                Column column = fromResultSet(rs);
-                if (column != null) {
-                    result.add(column);
+                Column column_todo = fromResultSet(rs);
+                if (column_todo != null) {
+                    result.add(column_todo);
                 }
             }
         } catch (SQLException ex) {
@@ -63,16 +62,16 @@ public class ColumnDAO {
         List<Column> result = new ArrayList<>();
         try (Connection conn = dbConnect.getConnection()) {
             // SQL query to get all existing Columns
-            String query = "select * from `column` where project_id=?";
+            String query = "select * from `column_todo` where project_id=?";
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setString(1, projectId);
             ResultSet rs = ps.executeQuery();
             // Fetch data
             while (rs.next()) {
-                Column column = fromResultSet(rs);
-                System.out.println("AAAA "+column);
-                if (column != null) {
-                    result.add(column);
+                Column column_todo = fromResultSet(rs);
+                System.out.println("AAAA "+column_todo);
+                if (column_todo != null) {
+                    result.add(column_todo);
                 }
             }
         } catch (SQLException ex) {
