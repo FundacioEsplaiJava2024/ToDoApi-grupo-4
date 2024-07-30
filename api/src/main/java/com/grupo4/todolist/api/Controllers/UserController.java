@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.grupo4.todolist.api.Domain.UserModel;
-import com.grupo4.todolist.api.Domain.Entities.User;
 import com.grupo4.todolist.api.Requests.UserRegisterRequest;
 
 
@@ -35,7 +34,7 @@ public class UserController {
 		return response;
 
 	}
-    @GetMapping("/login")
+    @PostMapping("/login")
     public long login(@RequestBody UserRegisterRequest request) {
         long id = model.getUserById(request.username(),request.password());
         return id;

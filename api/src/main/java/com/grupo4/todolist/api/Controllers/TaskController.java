@@ -95,7 +95,7 @@ public class TaskController {
 	@PostMapping("/tasks/{id}/move")
 	public String moveTask(@PathVariable ("id")String id ,@RequestBody TaskMoveRequest entity) {
 		String response;
-		
+		System.out.println("aaaaaa "+entity.newColumn());
 		int cont = model.moveTask(id, entity.newColumn());
 		if (cont == 1) {
 			response = "Tarea movida correctamente";
