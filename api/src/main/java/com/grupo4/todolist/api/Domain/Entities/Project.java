@@ -11,7 +11,6 @@ import jakarta.persistence.Table;
 public class Project {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String project_id;
 
     private String project_name;

@@ -14,15 +14,13 @@ public class User {
 
     private String user_password;
 
-    private String user_email;
 
     public User() {}
 
-    public User(long user_ID, String user_name, String user_password, String user_email) {
+    public User(long user_ID, String user_name, String user_password) {
         this.user_ID =  user_ID;
         this.user_name = user_name;
         this.user_password = user_password;
-        this.user_email = user_email;
     }
 
     public String getName() {
@@ -34,9 +32,7 @@ public class User {
     public String getPassword() {
         return user_password;
     }
-    public String getEmail() {
-        return user_email;
-    }
+
     
     public void setName(String user_name) {
         this.user_name = user_name;
@@ -47,7 +43,4 @@ public class User {
     public void setPassword(String user_password) {
         this.user_password = user_password;
     }    
-    public void setEmail(String user_email) {
-        this.user_email = user_email;
-    }
 }
