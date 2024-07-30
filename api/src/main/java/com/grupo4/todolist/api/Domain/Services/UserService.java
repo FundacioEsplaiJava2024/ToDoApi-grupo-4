@@ -22,17 +22,24 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User getUserById(Long user_ID) {
-        return userRepository.findById(user_ID).orElse(null);
+    public Optional<User> getUserById(Long user_ID) {
+        return userRepository.findById(user_ID);
     }
 
     public User updateUser(Long id, User user) {
-        user.setUserID(id);
-        return userRepository.save(user);
+        if (userRepository.existsById(id)) {
+            user.setUserID(id);
+            return userRepository.save(user);
+        }
+        return null;
     }
 
-    public void deleteUser(Long user_ID) {
-        userRepository.deleteById(user_ID);
+    public boolean deleteUser(Long user_ID) {
+        if (userRepository.existsById(user_ID)) {
+            userRepository.deleteById(user_ID);
+            return true;
+        }
+        return false;
     }
 
     public User authenticateUser(String userName, String userPassword) {
