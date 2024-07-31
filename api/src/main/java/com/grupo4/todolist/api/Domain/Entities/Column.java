@@ -7,21 +7,20 @@ import jakarta.persistence.*;
 @Table(name="`column`")
 public class Column {
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String column_id;
-    
     private String column_name;
-   
+    
     private String project_id;
+    @Id
+    private String column_id;
+   
 
     // Constructor por defecto
     public Column() {}
 
-    public Column(String column_id, String column_name, String project_id) {
-        this.column_id = column_id;
+    public Column(String column_name, String project_id, String column_id) {
         this.column_name = column_name;
         this.project_id = project_id;
+        this.column_id = column_id;
     }
 
     public String getNameColumn() {

@@ -23,7 +23,7 @@ public class ColumnDAO {
             String name = rs.getString("column_name");
             String project_id = rs.getString("project_id");
             // Create a new column object with the retrieved data
-            column_todo = new Column(id, name, project_id);
+            column_todo = new Column(name, project_id, id);
 
             return column_todo;
         } catch (SQLException ex) {
