@@ -29,7 +29,7 @@ public class ColumnController {
     // Método para agregar una nueva columna
 
     // Leer una columna
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Optional<Column>> leerCol(@PathVariable String id) {
         Optional<Column> oCol = serviceColumn.findById(id);
 
@@ -57,7 +57,7 @@ public class ColumnController {
     }
 
     // Eliminar columna
-    @DeleteMapping("del/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<Column> delete(@PathVariable String id) {
         if (serviceColumn.findById(id).isEmpty()) {// si no se encuentra la columna devuelve el codigo 404
             return ResponseEntity.notFound().build();
