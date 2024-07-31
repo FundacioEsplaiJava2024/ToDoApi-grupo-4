@@ -1,42 +1,43 @@
 package com.grupo4.todolist.api.Controllers;
 
-import org.springframework.web.bind.annotation.*;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import com.grupo4.todolist.api.Domain.Entities.User;
-import com.grupo4.todolist.api.Domain.Services.UserService;
+import com.grupo4.todolist.api.Domain.UserModel;
+import com.grupo4.todolist.api.Requests.UserRegisterRequest;
 
-import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/TodolistG4/user")
 public class UserController {
+    private static UserModel model = new UserModel(); //sus
 
-    @Autowired
-    private UserService UserService;
+    @PostMapping("/add")
+	public String addUser(@RequestBody UserRegisterRequest request) {
+		String response;
 
-    @PostMapping
-    public User createUser(@RequestBody User user) {
-        return UserService.createUser(user);
+		int cont = model.addUser(request.username(),request.password());
+		
+		if (cont == 1){
+			response = "User agregado correctamente";
+		}else if(cont == 0){
+			response = "Error al agregar user";
+		}else{
+			response = "Error al enviar user";
+		}
+
+		return response;
+
+	}
+    @PostMapping("/login")
+    public long login(@RequestBody UserRegisterRequest request) {
+        long id = model.getUserById(request.username(),request.password());
+        return id;
     }
-
-    @GetMapping
-    public List<User> getAllUsers() {
-        return UserService.getAllUsers();
-    }
-
-    @GetMapping("/{id}")
-    public User getUserById(@PathVariable Long id) {
-        return UserService.getUserById(id);
-    }
-
-    @PutMapping("/update/{id}")
-    public User updateUser(@PathVariable Long id, @RequestBody User user) {
-        return UserService.updateUser(id, user);
-    }
-
-    @DeleteMapping("/delete/{id}")
-    public void deleteUser(@PathVariable Long id) {
-        UserService.deleteUser(id);
-    }
+    
 }

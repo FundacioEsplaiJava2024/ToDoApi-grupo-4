@@ -8,10 +8,13 @@ import org.springframework.web.bind.annotation.*;
 import com.grupo4.todolist.api.Domain.Greeting;
 import com.grupo4.todolist.api.Domain.TaskModel;
 import com.grupo4.todolist.api.Domain.Entities.Task;
+import com.grupo4.todolist.api.Requests.TaskEditRequest;
+import com.grupo4.todolist.api.Requests.TaskMoveRequest;
 
 
 
 @RestController
+@CrossOrigin
 @RequestMapping("/TodolistG4")
 public class TaskController {
 	private static TaskModel model = new TaskModel(); //sus
@@ -28,10 +31,15 @@ public class TaskController {
 		return new Greeting(counter.incrementAndGet(), String.format(template, name));
 	}
 	
-	@GetMapping("/tasks")//TODO: añadir paginación
+	@GetMapping("/tasks")
 	public static List<Task> listTasks() {
 		
 		return model.listTasks();
+	}
+	@GetMapping("/tasks/column/{id}")//TODO: añadir paginación
+	public static List<Task> listTasksByCol(@PathVariable ("id") String id) {
+		
+		return model.listTasksByColumn(id);
 	}
 
 	@PostMapping("/tasks/add")
@@ -53,11 +61,10 @@ public class TaskController {
 
 	}
 	@PostMapping("/tasks/{id}/edit")
-	public String editTask(@PathVariable ("id") String id, @RequestBody Task entity) {
+	public String editTask(@PathVariable ("id") String id, @RequestBody TaskEditRequest request) {
 		String response;
-
-		int cont = model.editTask(entity);
-
+		int cont = model.editTask(id, request.newName());
+		
 		if (cont == 1) {
 			response = "Tarea editada correctamente";
 		}else if(cont == 0){
@@ -70,10 +77,10 @@ public class TaskController {
 	}
 	
 	@DeleteMapping("/tasks/{id}/delete")
-	public String deleteTask(@PathVariable("id")String id, @RequestBody Task task){
+	public String deleteTask(@PathVariable("id")String id){
 		String response;
 
-		int cont = model.deleteTask(task);
+		int cont = model.deleteTask(id);
 		
 		if (cont == 1) {
 			response = "Tarea eliminada correctamente";
@@ -86,10 +93,10 @@ public class TaskController {
 	}
 
 	@PostMapping("/tasks/{id}/move")
-	public String moveTask(@PathVariable ("id")String id ,@RequestBody Task entity) {
+	public String moveTask(@PathVariable ("id")String id ,@RequestBody TaskMoveRequest entity) {
 		String response;
-		
-		int cont = model.moveTask(entity);
+		System.out.println("aaaaaa "+entity.newColumn());
+		int cont = model.moveTask(id, entity.newColumn());
 		if (cont == 1) {
 			response = "Tarea movida correctamente";
 		}else if(cont == 0){

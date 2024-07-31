@@ -63,6 +63,28 @@ public class TaskDAO {
         }
         return result;
     }
+    public List<Task> getTasksByColumnId(String columnId){
+        List<Task> result = new ArrayList<>();
+        try (Connection conn = dbConnect.getConnection()) {
+            // SQL query to get all existing tasks
+            String query = "select * from task where column_id=?";
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setString(1, columnId);
+            ResultSet rs = ps.executeQuery();
+            //Fetch data
+            while (rs.next()) {
+                Task task = fromResultSet(rs);
+                if (task != null) {
+                    result.add(task);
+                }
+            }
+        } catch (SQLException ex) {
+            //throw new PersistException("Sql error selecting tasks", OpResult.DB_SELERR.getCode());
+            System.out.println("Error "+ex);
+            //log de exception
+        }
+        return result;
+    }
 
 	public int insert(Task task) {
         //we start with the result = -1 because this gives us more information
@@ -85,15 +107,16 @@ public class TaskDAO {
         }
         return result;
 	}
-    public int edit(Task task) {
+    public int edit(String id, String newName) {
 		int result = -1;
         try (Connection conn = dbConnect.getConnection()) {
             // SQL query to edit a task
+            System.out.println("AYUDA"+ newName);
             String query = "update task set task_name=? where task_id=?";
             PreparedStatement ps = conn.prepareStatement(query);
             // Set parameters for the prepared statement
-            ps.setString(1, task.getTaskName());
-            ps.setString(2, task.getTaskId());
+            ps.setString(1, newName);
+            ps.setString(2, id);
             // Execute the update and get the result
            
             result = ps.executeUpdate();
@@ -104,13 +127,13 @@ public class TaskDAO {
         }
         return result;
 	}
-    public int delete(Task task) {
+    public int delete(String id) {
 		int result = -1;
         try (Connection conn = dbConnect.getConnection()) {
             // SQL query to delete a task
             String query = "delete from task where task_id=?";
             PreparedStatement ps = conn.prepareStatement(query);
-            ps.setString(1, task.getTaskId());
+            ps.setString(1, id);
            
             result = ps.executeUpdate();
         } catch (SQLException ex) {
@@ -120,14 +143,14 @@ public class TaskDAO {
         }
         return result;
 	}
-    public int move(Task task) {
+    public int move(String id, String newCol) {
 		int result = -1;
         try (Connection conn = dbConnect.getConnection()) {
             // SQL query to move a task
             String query = "update task set column_id=? where task_id=?";
             PreparedStatement ps = conn.prepareStatement(query);
-            ps.setString(1, task.getSourceColumn());
-            ps.setString(2, task.getTaskId());
+            ps.setString(1, newCol);
+            ps.setString(2, id);
            
             result = ps.executeUpdate();
         } catch (SQLException ex) {

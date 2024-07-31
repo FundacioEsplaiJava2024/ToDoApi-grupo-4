@@ -21,17 +21,17 @@ public class ProjectService {
     public List<Project> getAllProjects() {
         return projectRepository.findAll();
     }
-
-    public Project getProjectById(Long project_id) {
-        return projectRepository.findById(project_id).orElse(null);
+    
+    public List<Project> getProjectsByUserId(Long userId) {
+        return projectRepository.getProjectsByUserId(userId);
     }
 
-    public Project updateProject(Long project_id, Project project) {
+    public Project updateProject(String project_id, Project project) {
         project.setIDProject(project_id);
         return projectRepository.save(project);
     }
 
-    public void deleteProject(Long project_id) {
+    public void deleteProject(String project_id) {
         projectRepository.deleteById(project_id);
     }
 

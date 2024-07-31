@@ -6,10 +6,10 @@ import java.util.List;
 import com.grupo4.todolist.api.Domain.DAOs.TaskDAO;
 import com.grupo4.todolist.api.Domain.Entities.Task;
 
-public class TaskRepo {
+public class TaskRepository {
     private final TaskDAO taskDAO;
 
-    public TaskRepo() {
+    public TaskRepository() {
         this.taskDAO = new TaskDAO();
     }
 
@@ -21,16 +21,21 @@ public class TaskRepo {
 		int cont = taskDAO.insert(task);
         return cont;
 	}
-    public  int edit(Task task) {
-		int cont = taskDAO.edit(task);
+    public  int edit(String id, String newName) {
+		int cont = taskDAO.edit(id, newName);
         return cont;
 	}
-    public  int delete(Task task) {
-		int cont = taskDAO.delete(task);
+    public  int delete(String id) {
+		int cont = taskDAO.delete(id);
         return cont;
 	}
-    public  int move(Task task) {
-		int cont = taskDAO.move(task);
+    public  int move(String id, String newCol) {
+		int cont = taskDAO.move(id, newCol);
         return cont;
 	}
+
+    public List<Task> askTasksByColumn(String id) {
+        return taskDAO.getTasksByColumnId(id);
+    }
+    
 }

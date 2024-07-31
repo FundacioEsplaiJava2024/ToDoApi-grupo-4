@@ -9,34 +9,35 @@ import com.grupo4.todolist.api.Domain.Services.ProjectService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/TodolistG4/project")
+@CrossOrigin
+@RequestMapping("/TodolistG4/projects")
 public class ProjectController {
 
     @Autowired
     private ProjectService projectService;
 
-    @PostMapping
+    @PostMapping("/add")
     public Project createProject(@RequestBody Project project) {
         return projectService.createProject(project);
     }
 
-    @GetMapping
+    @GetMapping("/list")
     public List<Project> getAllProjects() {
         return projectService.getAllProjects();
     }
 
     @GetMapping("/{id}")
-    public Project getProjectById(@PathVariable Long id) {
-        return projectService.getProjectById(id);
+    public List<Project> getProjectById(@PathVariable Long id) {
+        return projectService.getProjectsByUserId(id);
     }
 
-    @PutMapping("/update/{id}")
-    public Project updateProject(@PathVariable Long id, @RequestBody Project project) {
+    @PostMapping("/update/{id}")
+    public Project updateProject(@PathVariable String id, @RequestBody Project project) {
         return projectService.updateProject(id, project);
     }
 
     @DeleteMapping("/delete/{id}")
-    public void deleteProject(@PathVariable Long id) {
+    public void deleteProject(@PathVariable String id) {
         projectService.deleteProject(id);
     }
 
