@@ -21,9 +21,9 @@ public class ProjectService {
     public List<Project> getAllProjects() {
         return projectRepository.findAll();
     }
-
-    public Project getProjectById(String project_id) {
-        return projectRepository.findById(project_id).orElse(null);
+    
+    public List<Project> getProjectsByUserId(Long userId) {
+        return projectRepository.getProjectsByUserId(userId);
     }
 
     public Project updateProject(String project_id, Project project) {
